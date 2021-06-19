@@ -1,0 +1,26 @@
+<div>
+    <form [formGroup]="loginForm" (ngSubmit)="login(loginForm.value)">
+        <div class="login-form" fxLayout="column">
+            Email ID
+            <mat-form-field class="login-input" appearance="outline">
+                <input matInput formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': loggingForm.email.errors }">
+                <mat-error *ngIf="(submitted && loggingForm.email.errors?.required) || (loggingForm.email.errors && loggingForm.email.touched)">Email  is required & Valid Format</mat-error>
+            </mat-form-field>
+            Password
+            <mat-form-field class="login-input" appearance="outline">
+                <input matInput type="password" class="form-control" formControlName="password" [ngClass]="{ 'is-invalid':loggingForm.password.errors }">
+                <mat-error *ngIf="(submitted && loggingForm.password.errors?.required) || (loggingForm.password.errors && loggingForm.password.touched)">Match all password pattern</mat-error>
+                <mat-icon matSuffix>visibility_off</mat-icon>
+            </mat-form-field>
+            <button mat-flat-button type="submit" color="accent">Login</button>
+            <a mat-flat-button fxLayout="row" fxLayoutAlign="end none" href="https://www.google.com/"
+                target="_blank">Forget
+                Password?</a>
+            <h1 fxLayout="row" fxLayoutAlign="center center">OR</h1>
+            <div fxLayout="row" fxLayoutAlign="space-between center">
+                <button mat-flat-button color="accent" class="facebook-button">Facebook</button>
+                <button mat-flat-button color="accent" class="google-button">Google</button>
+            </div>
+        </div>
+    </form>
+</div>
