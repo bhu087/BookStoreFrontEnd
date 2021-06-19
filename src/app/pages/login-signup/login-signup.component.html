@@ -1,19 +1,19 @@
-<div class="container">
+<div class="container" fxLayout="row" fxLayoutAlign="center center" [ngStyle]="{'background-color': bgColor}">
     <div  class="login-image-container" fxLayout="row" fxLayoutAlign="center center" >
         <div class="login-image-matcard">
             <mat-card>
                 <img class="login-image" mat-card-avatar src="./../../assets/login_SignUp.png"/>
-                <mat-card-content class="online-letter"><h3><b>ONLINE BOOK SHOPPING</b></h3></mat-card-content>
+                <mat-card-content class="online-letter"><h3><b fxLayout="row" fxLayoutAlign="center center">ONLINE BOOK SHOPPING</b></h3></mat-card-content>
             </mat-card>
         </div>
         <div class="login-signup-form">
             <mat-card>
                 <div class="button-selection" fxLayout="row" fxLayoutAlign="space-between center">
                     <div>
-                        <button mat-flat-button routerLink="login" class="login-button" routerLinkActive="active">LOGIN</button>
+                        <button mat-flat-button routerLink="login" (click)="changeColorOne()" class="login-button" routerLinkActive="active">LOGIN</button>
                     </div>
                     <div>
-                        <button mat-flat-button routerLink="signup" class="signup-button" routerLinkActive="active">SIGNUP</button>
+                        <button mat-flat-button routerLink="signup" (click)="changeColorTwo()" class="signup-button" routerLinkActive="active">SIGNUP</button>
                     </div>
                 </div>
                 <div>

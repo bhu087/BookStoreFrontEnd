@@ -4,31 +4,31 @@
         <mat-form-field class="signup-input" appearance="outline">
             <input matInput formControlName="name" class="form-control"
                 [ngClass]="{ 'is-invalid': signingForm.name.errors }">
-                <mat-hint *ngIf="(submitted && signingForm.name.errors?.required) || 
-                (signingForm.name.errors && signingForm.name.touched)">Required & min. 3 Letters</mat-hint>
+                <mat-error *ngIf="(submitted && signingForm.name.errors?.required) || 
+                (signingForm.name.errors && signingForm.name.touched)">Required & min. 3 Letters</mat-error>
         </mat-form-field>
         Email ID
         <mat-form-field class="signup-input" appearance="outline">
             <input matInput formControlName="email" class="form-control"
             [ngClass]="{ 'is-invalid': signingForm.email.errors }">
-            <mat-hint *ngIf="(submitted && signingForm.email.errors?.required) || 
-                (signingForm.email.errors && signingForm.email.touched)">Required & Valid Email</mat-hint>
+            <mat-error *ngIf="(submitted && signingForm.email.errors?.required) || 
+                (signingForm.email.errors && signingForm.email.touched)">Required & Valid Email</mat-error>
         
         </mat-form-field>
         Password
         <mat-form-field class="signup-input" appearance="outline">
             <input matInput type="password" formControlName="password" class="form-control"
             [ngClass]="{ 'is-invalid': signingForm.password.errors }">
-            <mat-hint *ngIf="(submitted && signingForm.password.errors?.required) || 
-                (signingForm.password.errors && signingForm.password.touched)">Required & Valid format</mat-hint>
+            <mat-error *ngIf="(submitted && signingForm.password.errors?.required) || 
+                (signingForm.password.errors && signingForm.password.touched)">Required & Valid format</mat-error>
         
         </mat-form-field>
         Mobile
         <mat-form-field class="signup-input" appearance="outline">
             <input matInput formControlName="mobile" class="form-control"
             [ngClass]="{ 'is-invalid': signingForm.mobile.errors }">
-            <mat-hint *ngIf="(submitted && signingForm.mobile.errors?.required) || 
-                (signingForm.mobile.errors && signingForm.mobile.touched)">Required & Valid Mobile</mat-hint>
+            <mat-error *ngIf="(submitted && signingForm.mobile.errors?.required) || 
+                (signingForm.mobile.errors && signingForm.mobile.touched)">Required & Valid Mobile</mat-error>
         
         </mat-form-field>
         <button mat-flat-button color="accent">Sign Up</button>
