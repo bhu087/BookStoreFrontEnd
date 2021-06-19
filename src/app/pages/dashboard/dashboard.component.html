@@ -1,0 +1,36 @@
+<div class="container">
+    <div class="toolbar-container" fxLayout="row" fxLayoutAlign="start center">
+        <mat-toolbar>
+            <div class="toolbar-left-part" fxLayout="row" fxFlex="0 0 0.5 auto" fxLayoutAlign="start center">
+                <div fxLayout="row" fxLayoutAlign="space-around center">
+                    <button mat-icon-button>
+                        <img src="../../../assets/education.png" />
+                    </button>
+                    <h3>
+                        Bookstore
+                    </h3>
+                </div>
+                <mat-form-field appearance="outline" fxLayout="row" fxLayoutAlign="left center">
+                    <mat-icon matPrefix>search</mat-icon>
+                    <input matInput placeholder="Search ...">
+                </mat-form-field>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="center center">
+                <div mat-car-avatar class="profile-pic" xLayoutAlign="center center">
+                    <!-- <img mat-card-image src="https://res.cloudinary.com/bhu087/image/upload/v1621412984/ocgt4xpa6zqcgeivfr0j.jpg" /> -->
+                    <button mat-button>
+                        <mat-icon>account_box</mat-icon>
+                    </button>
+                </div>
+                <div>
+                    <button mat-button>
+                        <div class="cart-icon" fxLayout="column" fxLayoutAlign="center center">
+                            <mat-icon>shopping_cart</mat-icon>
+                            <mat-label>Cart</mat-label>
+                        </div>
+                    </button>
+                </div>
+            </div>
+        </mat-toolbar>
+    </div>
+</div>

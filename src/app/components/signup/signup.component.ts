@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup,FormBuilder, Validators } from '@angular/forms';
+import {Router} from '@angular/router';
 import { UserServiceService } from 'src/app/services/userService/user-service.service';
 
 @Component({
@@ -11,7 +12,8 @@ export class SignupComponent implements OnInit {
 
   submitted = false;
   responseData: any;
-  constructor(private formBuilder: FormBuilder, private service: UserServiceService) { }
+  constructor(private formBuilder: FormBuilder, private service: UserServiceService,
+    private router: Router) { }
   signupForm= this.formBuilder.group({
     name:['', [Validators.required, Validators.minLength(3)]],
     mobile:['', [Validators.required]],
@@ -32,12 +34,13 @@ export class SignupComponent implements OnInit {
         name: value.name,
         email: value.email,
         mobile: value.mobile,
-        password: value.password
+        password: value.password,
+        holderState: 1
       }
       console.log(register);
       this.service.register(register).subscribe((success) =>{
         this.responseData = JSON.stringify(success);
-        console.log(this.responseData.userID);
+        this.router.navigateByUrl("/login");
         console.log(success);
       },
       (error)=>{

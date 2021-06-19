@@ -12,7 +12,7 @@ export class UserServiceService {
 
    login(data: any){
      console.log("User service");
-     return this.httpService.post(`${this.url}User/userLogin`, data);
+     return this.httpService.post(`${this.url}User/login`, data);
    }
    register(data:any){
     console.log("User service");
