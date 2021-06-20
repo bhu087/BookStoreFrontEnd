@@ -1,0 +1,50 @@
+.all-books-container{
+    padding-right: 150px;
+    padding-left: 150px;
+    .sort-selection-container{
+        padding-top: 20px;
+        mat-form-field{
+            font-size: x-small;
+            display: block !important;
+        } 
+        ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
+            color: black;
+          }
+    }
+}
+mat-grid-tile {
+    background: lightblue;
+  }
+  mat-card {
+    width: calc(100% - 45px);
+  height: calc(100% - 45px);
+    background-color: chartreuse;
+    border: 20px 20px 20px 20px;
+  }
+
+  @media (max-width: 600px) {
+    .all-books-container{
+        padding-right: 20px;
+        padding-left: 20px;
+        .sort-selection-container{
+            padding-top: 20px;
+            mat-form-field{
+                font-size: x-small;
+                display: block !important;
+            } 
+            ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
+                color: black;
+              }
+        }
+    }
+    mat-grid-tile {
+        background: lightblue;
+      }
+      mat-card {
+        width: calc(100% - 45px);
+      height: calc(100% - 45px);
+        background-color: chartreuse;
+        border: 20px 20px 20px 20px;
+      }
+    
+}

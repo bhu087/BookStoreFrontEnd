@@ -1,0 +1,40 @@
+<div class="all-books-container">
+    <div class="sort-selection-container" fxLayout="row" fxLayoutAlign="space-between center" >
+        <h4>Books( 100 items)</h4>
+        <mat-form-field appearance="outline">
+            <mat-select placeholder="Sort By Relevence">
+              <mat-option value="1">Default</mat-option>
+              <mat-option value="2">High to Low</mat-option>
+              <mat-option value="3">Low to High</mat-option>
+            </mat-select>
+          </mat-form-field>
+    </div>
+    <mat-grid-list [cols]="col" rowHeight="300px" (window:resize)="onResize($event)" [gutterSize]="'10px'">
+        <mat-grid-tile>
+            <mat-card>
+                <mat-card-title></mat-card-title>
+                <mat-card-content>
+                    
+                </mat-card-content>
+            </mat-card>
+        </mat-grid-tile>
+        <mat-grid-tile>
+            <mat-card>
+                <mat-card-title></mat-card-title>
+                <mat-card-content>
+                    
+                </mat-card-content>
+            </mat-card>
+        </mat-grid-tile>
+        <mat-grid-tile>3</mat-grid-tile>
+        <mat-grid-tile>4</mat-grid-tile>
+        <mat-grid-tile>1</mat-grid-tile>
+        <mat-grid-tile>2</mat-grid-tile>
+        <mat-grid-tile>3</mat-grid-tile>
+        <mat-grid-tile>4</mat-grid-tile>
+        <mat-grid-tile>1</mat-grid-tile>
+        <mat-grid-tile>2</mat-grid-tile>
+        <mat-grid-tile>3</mat-grid-tile>
+        <mat-grid-tile>4</mat-grid-tile>
+    </mat-grid-list>
+</div>
