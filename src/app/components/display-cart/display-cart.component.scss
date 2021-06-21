@@ -1,0 +1,59 @@
+.display-card-container{
+    padding-right: 150px;
+    padding-left: 150px;
+    width: 900px;
+    .card-container{
+        padding-bottom: 20px;
+    }
+    .mat-card{
+        top: 50px;
+        border: 1px solid rgb(170, 168, 168);
+        transition: none !important;
+    box-shadow: none !important;
+    }
+    .mycart-header{
+        padding-left: 20px !important;
+    }
+    .cart-image-container{
+        padding-left: 20px;
+    }
+    .book-description{
+        padding-left: 40px;
+        margin-top: -20px;
+        h1, h2, h3, h4, h5, h6{
+            line-height: 20px !important; 
+        }
+        .cart-size-container{
+            input{
+                margin-right: 10px;
+                margin-left: 10px;
+                width: 20px;
+            }
+            .remove-button{
+                margin-left: 20px;
+            }
+        }     
+    }
+}
+
+.my-fab {
+    width: 20px;
+    height: 20px;
+    line-height: 14px;
+    font-size: 14px;
+    background: whitesmoke;
+    color: rgb(0, 0, 0);
+    border: 1px solid rgb(122, 122, 122);
+        transition: none !important;
+    box-shadow: none !important;
+
+    ::ng-deep .mat-button-wrapper{
+        line-height: 14px;
+        padding: 0;
+         .mat-icon {
+             font-size: 14px;
+             padding-right: 4px;
+             padding-top: 4px;
+         }
+   }
+}

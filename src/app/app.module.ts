@@ -25,6 +25,7 @@ import {MatMenuModule} from '@angular/material/menu';
 import { ToolBarComponent } from './components/tool-bar/tool-bar.component';
 import { FooterComponent } from './components/footer/footer.component';
 import {MatBadgeModule} from '@angular/material/badge';
+import { DisplayCartComponent } from './components/display-cart/display-cart.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import {MatBadgeModule} from '@angular/material/badge';
     DashboardComponent,
     DisplayBooksComponent,
     ToolBarComponent,
-    FooterComponent
+    FooterComponent,
+    DisplayCartComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),

@@ -1,4 +1,6 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import { Router } from '@angular/router';
+
 import { BooksServiceService } from 'src/app/services/booksService/books-service.service';
 
 @Component({
@@ -10,7 +12,7 @@ export class ToolBarComponent implements OnInit {
   data :any;
   @Output() toolToDash = new EventEmitter<number>();
   @Input() cartCount: number = 0;  //data sharing cart count will be updating according to add to bag click
-  constructor(private bookService: BooksServiceService) {
+  constructor(private bookService: BooksServiceService, private router: Router) {
     this.onGetCart();     // initial badge count
   }
 
@@ -28,5 +30,8 @@ export class ToolBarComponent implements OnInit {
     (error)=>{
       console.log(error);
     });
+  }
+  onCart(){
+    this.router.navigateByUrl("/cart");
   }
 }

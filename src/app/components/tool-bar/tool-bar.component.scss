@@ -28,7 +28,11 @@
         line-height: 15px !important;
     }
 }
-
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
+    background-color: white !important;
+    color: white;
+    border-radius: 5px 5px 5px 5px !important;
+}
 ::ng-deep .mat-badge-content {
     background: #A03037;
 }

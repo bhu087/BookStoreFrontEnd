@@ -22,7 +22,10 @@
                 </button>
             </div>
             <div>
-                <button mat-button>
+                <!-- <div>
+                    <button mat-flat-button routerLink="signup" (click)="changeColorTwo()" class="signup-button" routerLinkActive="active">SIGNUP</button>
+                </div> -->
+                <button mat-button (click)="onCart()">
                     <div class="cart-icon" fxLayout="column" fxLayoutAlign="center center">
                         <mat-icon [matBadge]="cartCount">shopping_cart</mat-icon>
                         <mat-label>Cart</mat-label>
@@ -32,3 +35,4 @@
         </div>
     </mat-toolbar>
     </div>
+    <router-outlet></router-outlet>

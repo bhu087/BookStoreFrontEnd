@@ -1,0 +1,31 @@
+<app-tool-bar></app-tool-bar>
+<div class="display-card-container">
+    <mat-card>
+        <h2 class="mycart-header">My Cart</h2>
+        <div *ngFor="let cart of data" class="card-container">
+            <div fxLayout="row" fxLayoutAlign="start center">
+                <div class="cart-image-container">
+                    <img src="../../../assets/Image 11.png">
+                </div>
+                <div class="book-description">
+                    <h2>{{cart.bookName}}</h2>
+                    <h4>{{cart.author}}</h4>
+                    <h3><b>Rs. {{cart.price}}</b></h3>
+                    <div Layout="row" fxLayoutAlign="start center" class="cart-size-container">
+                        <div>
+                            <button mat-mini-fab class="my-fab" (click)="increase(cart)">+</button>
+                        </div>
+                        <div>
+                            <input value="{{cart.quantity}}" disabled />
+                        </div>
+                        <div>
+                            <button mat-mini-fab class="my-fab" (click)="decrease(cart)">-</button>
+                        </div>
+                        <div class="remove-button">Remove</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </mat-card>
+</div>
+<app-footer></app-footer>
