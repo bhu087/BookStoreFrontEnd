@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import { BooksServiceService } from 'src/app/services/booksService/books-service.service';
 
 @Component({
   selector: 'app-tool-bar',
@@ -6,10 +7,26 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./tool-bar.component.scss']
 })
 export class ToolBarComponent implements OnInit {
-
-  constructor() { }
+  data :any;
+  @Output() toolToDash = new EventEmitter<number>();
+  @Input() cartCount: number = 0;  //data sharing cart count will be updating according to add to bag click
+  constructor(private bookService: BooksServiceService) {
+    this.onGetCart();     // initial badge count
+  }
 
   ngOnInit(): void {
   }
 
+  onGetCart(){
+    this.bookService.getCart().subscribe((serve) => {
+      this.data = serve["data"];
+      for(let book of this.data){
+        this.cartCount += 1;
+     }
+      console.log(serve["data"]);
+    },
+    (error)=>{
+      console.log(error);
+    });
+  }
 }

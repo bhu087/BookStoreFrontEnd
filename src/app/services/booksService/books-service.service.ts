@@ -22,4 +22,8 @@ export class BooksServiceService {
     var res = this.httpservice.get(`${this.url}Books/getAllBooks`, true, this.header);
     return res;
   }
+  getCart(): Observable<any>{
+    var res = this.httpservice.get(`${this.url}Books/getCart`, true, this.header);
+    return res;
+  }
 }

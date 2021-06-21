@@ -24,7 +24,7 @@
             <div>
                 <button mat-button>
                     <div class="cart-icon" fxLayout="column" fxLayoutAlign="center center">
-                        <mat-icon>shopping_cart</mat-icon>
+                        <mat-icon [matBadge]="cartCount">shopping_cart</mat-icon>
                         <mat-label>Cart</mat-label>
                     </div>
                 </button>

@@ -11,25 +11,25 @@
     </div>
     <div class="grid-display">
         <mat-grid-list [cols]="col" rowHeight="300px" (window:resize)="onResize($event)" [gutterSize]="'10px'">
-            <mat-grid-tile *ngFor="let a of HEROES">
+            <mat-grid-tile *ngFor="let book of data">
                 <mat-card><!--[matMenuTriggerFor]="menu"-->
 
                     <div fxLayout="row" fxLayoutAlign="center center"> <!--(mouseenter)="openMyMenu()"-->
                         <img mat-card-image src="../../../assets/Image 11.png">
                     </div>
                     <mat-card-content fxLayout="column" fxLayoutAlign="left">
-                        <h3><b>The Shiba Inu is</b></h3>
-                        <h5>by Shiba</h5>
-                        <h3><b>Rs. 1500</b></h3>
+                        <h3><b>{{book.bookName}}</b></h3>
+                        <h5>{{book.author}}</h5>
+                        <h3><b>Rs. {{book.price}}</b></h3>
                     </mat-card-content>
                     <!-- <div fxLayout="row" fxLayoutAlign="start center"><mat-chip>4.5<mat-icon>star</mat-icon></mat-chip></div> -->
                     <!-- <div class="price-container" fxLayout="row" fxLayoutAlign="start baseline"></div> -->
                     <div fxLayout="row" fxLayoutAlign="space-between center">
-                        <button mat-raised-button *ngIf="!a.clicked"
-                            (click)="onAddToCart(a)" class="add-bag-button">ADD TO BAG</button>
-                        <button mat-stroked-button *ngIf="!a.clicked"
+                        <button mat-raised-button *ngIf="!book.clicked"
+                            (click)="onAddToCart(book); notifyDashboard($event);" class="add-bag-button">ADD TO BAG</button>
+                        <button mat-stroked-button *ngIf="!book.clicked"
                              class="wihlist-button">WISHLIST</button>
-                             <button mat-stroked-button *ngIf="a.clicked" [disabled]="a.clicked" class="added-button">ADDED TO BAG</button>
+                             <button mat-stroked-button *ngIf="book.clicked" [disabled]="book.clicked" class="added-button">ADDED TO BAG</button>
                     </div>
                 </mat-card>
                 <!-- <mat-menu #menu="matMenu" [overlapTrigger]="false" xPosition="after">

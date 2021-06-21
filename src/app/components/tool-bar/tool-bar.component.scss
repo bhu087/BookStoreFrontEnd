@@ -29,6 +29,10 @@
     }
 }
 
+::ng-deep .mat-badge-content {
+    background: #A03037;
+}
+
 @media (max-width: 600px) {
     .toolbar-container{
         .mat-toolbar{

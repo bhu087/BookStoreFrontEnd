@@ -1,7 +1,7 @@
 <div class="container">
-<app-tool-bar></app-tool-bar>
+<app-tool-bar [cartCount]=cartCount></app-tool-bar>
 </div>
 <div class="all-books-container">
-    <app-display-books></app-display-books>
+    <app-display-books (childToParent)="callChild($event)"></app-display-books>
 </div>
-<app-footer></app-footer>
+<app-footer></app-footer> <!--fxFlexOffset="auto"-->
