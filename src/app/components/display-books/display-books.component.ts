@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatMenuTrigger } from '@angular/material/menu';
+import { BooksServiceService } from 'src/app/services/booksService/books-service.service';
 
 @Component({
   selector: 'app-display-books',
@@ -13,9 +14,10 @@ export class DisplayBooksComponent implements OnInit {
   addWishlist: any = false;
   @ViewChild(MatMenuTrigger)
   trigger!: MatMenuTrigger;
-  constructor() { }
+  constructor(private booksService: BooksServiceService) { }
 
   ngOnInit(): void {
+    this.onGetAllBooks();
   }
    HEROES = [
     {id: 1, name:'Superman', clicked:false},
@@ -39,6 +41,14 @@ export class DisplayBooksComponent implements OnInit {
     else{
       this.col = 1;
     }
+  }
+  onGetAllBooks(){
+    this.booksService.getAllBooks().subscribe((result) => {
+      console.log(result);
+    },
+    (error)=>{
+      console.log(error);
+    });
   }
   onAddToCart(a:any){
     let index = this.HEROES.indexOf(a);

@@ -12,4 +12,7 @@ export class HttpServiceService {
     console.log(data);
     return this.http.post(uri, data, isHeaders && headers);
   }
+  get(uri: any, isHeaders: any = false, headers : any = null){
+    return this.http.get(uri, isHeaders && headers);
+  }
 }
