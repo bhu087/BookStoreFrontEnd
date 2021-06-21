@@ -1,6 +1,7 @@
 .all-books-container{
     padding-right: 150px;
     padding-left: 150px;
+    line-height: 0px !important;
     .sort-selection-container{
         padding-top: 20px;
         mat-form-field{
@@ -11,14 +12,62 @@
             color: black;
           }
     }
+    .grid-display{
+        .inner-mat-car{
+            background-color: chartreuse;
+            height: 50%;
+            width: 100% !important;
+            padding: 0px !important;
+        }
+        img{
+            width: 120px;
+            height: 150px;
+            padding-top: 20px;
+        }
+        h5{
+            color: rgb(167, 167, 167);
+        }
+        // mat-chip{
+        //     background-color: green;
+        //     color: whitesmoke;
+        // }
+        mat-icon{
+            font-size: small;
+            display: contents !important;
+        }
+        .ratings-count{
+            h5{
+                padding-top: 50px !important;
+            }
+        }
+        .price-container{
+            height: 25px !important;
+            h1, h2, h3, h4, h5, h6{
+                line-height: 30px !important; 
+            }
+        }
+        .add-bag-button{
+            background-color: #A03037;
+            color: whitesmoke;
+        }
+        .added-button{
+            width: 100%;
+            background-color: rgb(71, 86, 168);
+            color: whitesmoke;
+        }
+    }
 }
+// ::ng-deep mat-card{
+//     padding: 0px !important;
+// }
+h1, h2, h3, h4, h5, h6{
+    line-height: 5px; 
+  }
 mat-grid-tile {
-    background: lightblue;
   }
   mat-card {
-    width: calc(100% - 45px);
-  height: calc(100% - 45px);
-    background-color: chartreuse;
+    width: calc(100% - 47px);
+    height: calc(100% - 45px);
     border: 20px 20px 20px 20px;
   }
 
@@ -38,13 +87,10 @@ mat-grid-tile {
         }
     }
     mat-grid-tile {
-        background: lightblue;
       }
       mat-card {
         width: calc(100% - 45px);
-      height: calc(100% - 45px);
-        background-color: chartreuse;
+        height: calc(100% - 45px);
         border: 20px 20px 20px 20px;
-      }
-    
+      }  
 }

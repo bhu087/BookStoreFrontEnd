@@ -20,6 +20,10 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import { DisplayBooksComponent } from './components/display-books/display-books.component';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatSelectModule} from '@angular/material/select';
+import {MatChipsModule} from '@angular/material/chips';
+import {MatMenuModule} from '@angular/material/menu';
+import { ToolBarComponent } from './components/tool-bar/tool-bar.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +32,9 @@ import {MatSelectModule} from '@angular/material/select';
     LoginComponent,
     SignupComponent,
     DashboardComponent,
-    DisplayBooksComponent
+    DisplayBooksComponent,
+    ToolBarComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
@@ -45,7 +51,9 @@ import {MatSelectModule} from '@angular/material/select';
     HttpClientModule,
     MatToolbarModule,
     MatGridListModule,
-    MatSelectModule
+    MatSelectModule,
+    MatChipsModule,
+    MatMenuModule
   ],
   providers: [],
   bootstrap: [AppComponent]

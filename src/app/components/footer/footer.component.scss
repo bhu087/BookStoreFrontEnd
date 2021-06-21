@@ -1,0 +1,21 @@
+.footer-container{
+    .mat-toolbar{
+        height: 50px;
+        color: whitesmoke;
+        background-color: #2E1D1E;
+        padding-right: 150px;
+        padding-left: 150px;
+        h1{
+            font-size: x-small;
+        }
+    }
+}
+@media (max-width: 600px) {
+    ::ng-deep .mat-toolbar{
+        justify-content: center !important;
+    align-content: center !important;
+    align-items: center !important;
+        padding-right: 0;
+        padding-left: 0;
+    }
+}
