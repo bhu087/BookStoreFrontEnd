@@ -26,6 +26,83 @@
                 </div>
             </div>
         </div>
+        <div fxLayout="row" fxLayoutAlign="end center">
+            <button mat-raised-button color="primary" (click)="placeOrder()" *ngIf="placeOrderButton">PLACE ORDER</button>
+        </div>
+    </mat-card>
+</div>
+<div class="customer-details-container">
+    <mat-card>
+        <h3>Customer Details</h3>
+        <div *ngIf="customerDetails">
+            <div fxLayout="column" fxLayoutAlign="center start">
+                <div fxLayout="column" fxLayoutAlign="center start">
+                    <div fxLayout="row" fxLayoutAlign="space-between start">
+                        <mat-form-field appearance="outline">
+                            <input matInput placeholder="Name">
+                        </mat-form-field>
+                        <mat-form-field appearance="outline">
+                            <input matInput placeholder="Phone Number">
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <mat-form-field appearance="outline">
+                            <input matInput placeholder="Pincode">
+                        </mat-form-field>
+                        <mat-form-field appearance="outline">
+                            <input matInput placeholder="Locality">
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <mat-form-field class="address-field" appearance="outline">
+                            <input matInput placeholder="Address">
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <mat-form-field appearance="outline">
+                            <input matInput placeholder="City/Town">
+                        </mat-form-field>
+                        <mat-form-field appearance="outline">
+                            <input matInput placeholder="Land Mark">
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        Type
+                        <mat-radio-group fxLayout="row" fxLayoutAlign="space-between center"
+                            aria-label="Select an option">
+                            <mat-radio-button value="1">Home</mat-radio-button>
+                            <mat-radio-button value="2">Work</mat-radio-button>
+                            <mat-radio-button value="2">Other</mat-radio-button>
+                        </mat-radio-group>
+                    </div>
+                </div>
+            </div>
+            <div class="continue-button" fxLayout="row" fxLayoutAlign="end center">
+                <button mat-raised-button color="primary" (click)="continue()" *ngIf="continueButton">CONTINUE</button>
+            </div>
+        </div>
+    </mat-card>
+</div>
+<div class="customer-details-container">
+    <mat-card>
+        <h3>Order Summery</h3>
+        <div *ngIf="orderSummery">
+            <div *ngFor="let cart of data" class="card-container">
+                <div fxLayout="row" fxLayoutAlign="start center">
+                    <div class="cart-image-container">
+                        <img src="../../../assets/Image 11.png">
+                    </div>
+                    <div class="book-description">
+                        <h2>{{cart.bookName}}</h2>
+                        <h4>{{cart.author}}</h4>
+                        <h3><b>Rs. {{cart.price}}</b></h3>
+                    </div>
+                </div>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="end center">
+                <button mat-raised-button color="primary">CHECKOUT</button>
+            </div>
+        </div>
     </mat-card>
 </div>
 <app-footer></app-footer>

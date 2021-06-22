@@ -12,6 +12,10 @@ export class DisplayCartComponent implements OnInit {
   data:any;
   increaseButton = true;
   decreaseButton = true;
+  placeOrderButton =true;
+  continueButton = true;
+  customerDetails = false;
+  orderSummery = false;
   ngOnInit(): void {
     this.onCart();
   }
@@ -52,5 +56,13 @@ export class DisplayCartComponent implements OnInit {
      else{
        this.decreaseButton = false;
      }
+  }
+  placeOrder(){
+    this.placeOrderButton = false;
+    this.customerDetails = true;
+  }
+  continue(){
+    this.continueButton = false;
+    this.orderSummery = true;
   }
 }

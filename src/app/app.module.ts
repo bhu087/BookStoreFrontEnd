@@ -26,6 +26,7 @@ import { ToolBarComponent } from './components/tool-bar/tool-bar.component';
 import { FooterComponent } from './components/footer/footer.component';
 import {MatBadgeModule} from '@angular/material/badge';
 import { DisplayCartComponent } from './components/display-cart/display-cart.component';
+import {MatRadioModule} from '@angular/material/radio';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import { DisplayCartComponent } from './components/display-cart/display-cart.com
     MatSelectModule,
     MatChipsModule,
     MatMenuModule,
-    MatBadgeModule
+    MatBadgeModule,
+    MatRadioModule
   ],
   providers: [],
   bootstrap: [AppComponent]

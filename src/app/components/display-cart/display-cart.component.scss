@@ -35,6 +35,37 @@
         }     
     }
 }
+.customer-details-container{
+    padding-right: 150px;
+    padding-left: 150px;
+    width: 900px;
+    margin-top: 20px;
+    .mat-card{
+        top: 50px;
+        border: 1px solid rgb(170, 168, 168);
+        transition: none !important;
+        box-shadow: none !important;
+    }
+    .book-description{
+        padding-left: 40px;
+        margin-top: -20px;
+        h1, h2, h3, h4, h5, h6{
+            line-height: 20px !important; 
+        }     
+    }
+    ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
+        color: rgb(141, 141, 141);
+    }
+    mat-form-field{
+        padding-right: 20px;
+    }
+    .address-field{
+            width: 420px !important;
+    }
+    mat-radio-button{
+        padding-right: 20px;
+    }
+}
 
 .my-fab {
     width: 20px;
