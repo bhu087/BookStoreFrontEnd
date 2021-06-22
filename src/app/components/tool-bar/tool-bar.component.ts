@@ -34,4 +34,11 @@ export class ToolBarComponent implements OnInit {
   onCart(){
     this.router.navigateByUrl("/cart");
   }
+  increaseCart(){
+    console.log("increase");
+    this.cartCount ++;
+  }
+  decreaseCart(){
+    this.cartCount --;
+  }
 }

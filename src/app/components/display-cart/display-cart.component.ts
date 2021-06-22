@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { BooksServiceService } from 'src/app/services/booksService/books-service.service';
+import { ToolBarComponent } from '../tool-bar/tool-bar.component';
 
 @Component({
   selector: 'app-display-cart',
@@ -8,6 +9,8 @@ import { BooksServiceService } from 'src/app/services/booksService/books-service
 })
 export class DisplayCartComponent implements OnInit {
 
+  @ViewChild(ToolBarComponent)
+  toolBar!: ToolBarComponent;
   constructor(private bookService: BooksServiceService) { }
   data:any;
   increaseButton = true;
@@ -19,6 +22,7 @@ export class DisplayCartComponent implements OnInit {
   ngOnInit(): void {
     this.onCart();
   }
+ 
   onCart(){
     this.bookService.getCart().subscribe((serve) => {
       this.data = serve["data"];
@@ -34,6 +38,8 @@ export class DisplayCartComponent implements OnInit {
     cart.quantity += 1;
     this.data[index] = cart;
     this.decreaseButton = true;
+    //adding cart value by one
+    this.toolBar.increaseCart();
     }
     if(cart.quantity > 0){
       
@@ -48,8 +54,9 @@ export class DisplayCartComponent implements OnInit {
       let index = this.data.indexOf(cart);
       cart.quantity -= 1;
       this.data[index] = cart;
-      
       this.increaseButton = true;
+      //decreasing cart value by one
+      this.toolBar.decreaseCart();
     }
     if(cart.quantity < 10){
     }
@@ -60,6 +67,7 @@ export class DisplayCartComponent implements OnInit {
   placeOrder(){
     this.placeOrderButton = false;
     this.customerDetails = true;
+    console.log(this.data);
   }
   continue(){
     this.continueButton = false;

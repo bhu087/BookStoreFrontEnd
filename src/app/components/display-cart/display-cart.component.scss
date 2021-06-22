@@ -88,3 +88,17 @@
          }
    }
 }
+
+@media (max-width: 600px) {
+    .display-card-container{
+        padding-right: 0px;
+    padding-left: 0px;
+    width: 100% !important;
+    }
+    .customer-details-container{
+        padding-right: 0;
+        padding-left: 0px;
+        width: 100% !important;
+        margin-top: 20px;
+    }
+}

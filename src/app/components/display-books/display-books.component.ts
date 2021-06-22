@@ -11,6 +11,7 @@ export class DisplayBooksComponent implements OnInit {
   cartCount : number = 0;
   col: any = 4;
   data:any;
+  cartData:any;
   @Output() childToParent = new EventEmitter<Event>();
   @ViewChild(MatMenuTrigger)
   trigger!: MatMenuTrigger;
@@ -18,6 +19,7 @@ export class DisplayBooksComponent implements OnInit {
 
   ngOnInit(): void {
     this.onGetAllBooks();
+    this.onGetCart();
   }
 // openMyMenu() {
 //   this.trigger.openMenu();
@@ -52,6 +54,32 @@ notifyDashboard(event:Event){
     (error)=>{
       console.log(error);
     });
+  }
+  onGetCart(){
+    this.booksService.getCart().subscribe((result) => {
+      console.log(result);
+      this.cartData = result["data"];
+      for(let book of this.cartData){
+        book["clicked"] = true;
+     }
+     this.checkBookCartStatus();
+      console.log(result["data"]);
+    },
+    (error)=>{
+      console.log(error);
+    });
+  }
+  checkBookCartStatus(){
+    for(let book of this.data){
+      for(let cart of this.cartData){
+        if(book.bookID === cart.bookID){
+          if(cart.clicked === true){
+            book["clicked"] = true;
+          }
+        }
+     }
+   }
+   console.log("End here");
   }
   onAddToCart(a:any){
     let index = this.data.indexOf(a);
