@@ -23,10 +23,15 @@ export class DashboardComponent implements OnInit {
   onGetCart(){
     this.bookService.getCart().subscribe((serve) => {
       this.data = serve["data"];
-      for(let book of this.data){
-        this.cartCount += 1;
-     }
-      console.log(serve["data"]);
+      if(this.data !== null){
+        for(let book of this.data){
+          this.cartCount += 1;
+       }
+        console.log(serve["data"]);
+      }
+      else{
+        this.cartCount = 0;
+      }
     },
     (error)=>{
       console.log(error);

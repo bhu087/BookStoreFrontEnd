@@ -26,4 +26,32 @@ export class BooksServiceService {
     var res = this.httpservice.get(`${this.url}Books/getCart`, true, this.header);
     return res;
   }
+  addToCart(data:any): Observable<any>{
+    var res = this.httpservice.put(`${this.url}Books/addToCart/${data}`, data, true, this.header);
+    console.log(res);
+    return res;
+  }
+  decreaseCartCount(data:any): Observable<any>{
+    var res = this.httpservice.put(`${this.url}Books/decreaseFromCart/${data}`, data, true, this.header);
+    console.log(res);
+    return res;
+  }
+  deleteBookFromCart(data:any): Observable<any>{
+    var res = this.httpservice.put(`${this.url}Books/deleteFromCart/${data}`, data, true, this.header);
+    console.log(res);
+    return res;
+  }
+  placeOrder(data:any): Observable<any>{
+    var res = this.httpservice.post(`${this.url}Books/placeOrder`, data, true, this.header);
+    return res;
+  }
+  getSortedBooks(data:any): Observable<any>{
+    var res = this.httpservice.get(`${this.url}Books/orderByPrice/${data}`, true, this.header);
+    return res;
+  }
+  addToWishList(data:any): Observable<any>{
+    var res = this.httpservice.put(`${this.url}Books/addToWishList/${data}`, data, true, this.header);
+    console.log(res);
+    return res;
+  }
 }

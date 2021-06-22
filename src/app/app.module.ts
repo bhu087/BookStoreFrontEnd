@@ -27,6 +27,8 @@ import { FooterComponent } from './components/footer/footer.component';
 import {MatBadgeModule} from '@angular/material/badge';
 import { DisplayCartComponent } from './components/display-cart/display-cart.component';
 import {MatRadioModule} from '@angular/material/radio';
+import { OrderSuccessfulComponent } from './pages/order-successful/order-successful.component';
+import {MatTableModule} from '@angular/material/table';
 
 @NgModule({
   declarations: [
@@ -38,7 +40,8 @@ import {MatRadioModule} from '@angular/material/radio';
     DisplayBooksComponent,
     ToolBarComponent,
     FooterComponent,
-    DisplayCartComponent
+    DisplayCartComponent,
+    OrderSuccessfulComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
@@ -59,7 +62,8 @@ import {MatRadioModule} from '@angular/material/radio';
     MatChipsModule,
     MatMenuModule,
     MatBadgeModule,
-    MatRadioModule
+    MatRadioModule,
+    MatTableModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -18,9 +18,8 @@
         }
     }
     .profile-pic{
-        img{
-            width: 40px;
-            height: 40px;
+        mat-icon{
+            color: white;
         }
     }
     .cart-icon{
@@ -48,6 +47,7 @@
                 color: rgb(250, 250, 250);
             }
             .toolbar-left-part{
+                padding-left: 5px !important;
                mat-form-field{
                    display: none !important;
                } 

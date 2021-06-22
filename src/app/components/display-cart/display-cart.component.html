@@ -21,13 +21,14 @@
                         <div>
                             <button mat-mini-fab class="my-fab" (click)="decrease(cart)">-</button>
                         </div>
-                        <div class="remove-button">Remove</div>
+                        <div class="remove-button"><button mat-button (click)=remove(cart)>REMOVE</button></div>
                     </div>
                 </div>
             </div>
         </div>
         <div fxLayout="row" fxLayoutAlign="end center">
-            <button mat-raised-button color="primary" (click)="placeOrder()" *ngIf="placeOrderButton">PLACE ORDER</button>
+            <button mat-raised-button color="primary" (click)="placeOrder()" *ngIf="placeOrderButton">PLACE
+                ORDER</button>
         </div>
     </mat-card>
 </div>
@@ -35,51 +36,53 @@
     <mat-card>
         <h3>Customer Details</h3>
         <div *ngIf="customerDetails">
-            <div fxLayout="column" fxLayoutAlign="center start">
+            <form [formGroup]="addressForm" (ngSubmit)="onAddAddress(addressForm.value)">
                 <div fxLayout="column" fxLayoutAlign="center start">
-                    <div fxLayout="row" fxLayoutAlign="space-between start">
-                        <mat-form-field appearance="outline">
-                            <input matInput placeholder="Name">
-                        </mat-form-field>
-                        <mat-form-field appearance="outline">
-                            <input matInput placeholder="Phone Number">
-                        </mat-form-field>
-                    </div>
-                    <div>
-                        <mat-form-field appearance="outline">
-                            <input matInput placeholder="Pincode">
-                        </mat-form-field>
-                        <mat-form-field appearance="outline">
-                            <input matInput placeholder="Locality">
-                        </mat-form-field>
-                    </div>
-                    <div>
-                        <mat-form-field class="address-field" appearance="outline">
-                            <input matInput placeholder="Address">
-                        </mat-form-field>
-                    </div>
-                    <div>
-                        <mat-form-field appearance="outline">
-                            <input matInput placeholder="City/Town">
-                        </mat-form-field>
-                        <mat-form-field appearance="outline">
-                            <input matInput placeholder="Land Mark">
-                        </mat-form-field>
-                    </div>
-                    <div>
-                        Type
-                        <mat-radio-group fxLayout="row" fxLayoutAlign="space-between center"
-                            aria-label="Select an option">
-                            <mat-radio-button value="1">Home</mat-radio-button>
-                            <mat-radio-button value="2">Work</mat-radio-button>
-                            <mat-radio-button value="2">Other</mat-radio-button>
-                        </mat-radio-group>
+                    <div fxLayout="column" fxLayoutAlign="center start">
+                        <div fxLayout="row" fxLayoutAlign="space-between start" class="name-mobile-input">
+                            <mat-form-field appearance="outline">
+                                <input matInput placeholder="Name" formControlName="name">
+                            </mat-form-field>
+                            <mat-form-field appearance="outline">
+                                <input matInput placeholder="Phone Number" formControlName="mobile">
+                            </mat-form-field>
+                        </div>
+                        <div class="pincode-locality-input">
+                            <mat-form-field appearance="outline">
+                                <input matInput placeholder="Pincode" formControlName="pincode">
+                            </mat-form-field>
+                            <mat-form-field appearance="outline">
+                                <input matInput placeholder="Locality" formControlName="locality">
+                            </mat-form-field>
+                        </div>
+                        <div>
+                            <mat-form-field class="address-field" appearance="outline">
+                                <input matInput placeholder="Address" formControlName="address">
+                            </mat-form-field>
+                        </div>
+                        <div class="city-landmark">
+                            <mat-form-field appearance="outline">
+                                <input matInput placeholder="City/Town" formControlName="city">
+                            </mat-form-field>
+                            <mat-form-field appearance="outline">
+                                <input matInput placeholder="Land Mark" formControlName="landMark">
+                            </mat-form-field>
+                        </div>
+                        <div>
+                            Type
+                            <mat-radio-group fxLayout="row" fxLayoutAlign="space-between center" formControlName="options">
+                                <mat-radio-button value="Home">Home</mat-radio-button>
+                                <mat-radio-button value="Work">Work</mat-radio-button>
+                                <mat-radio-button value="Other">Other</mat-radio-button>
+                            </mat-radio-group>
+                        </div>
                     </div>
                 </div>
-            </div>
+            
             <div class="continue-button" fxLayout="row" fxLayoutAlign="end center">
-                <button mat-raised-button color="primary" (click)="continue()" *ngIf="continueButton">CONTINUE</button>
+                <button mat-raised-button color="primary" type="submit" *ngIf="continueButton">CONTINUE</button>
             </div>
+        </form>
         </div>
     </mat-card>
 </div>
@@ -100,7 +103,7 @@
                 </div>
             </div>
             <div fxLayout="row" fxLayoutAlign="end center">
-                <button mat-raised-button color="primary">CHECKOUT</button>
+                <button mat-raised-button color="primary" (click)="onCheckout()">CHECKOUT</button>
             </div>
         </div>
     </mat-card>

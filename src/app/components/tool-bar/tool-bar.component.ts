@@ -22,10 +22,12 @@ export class ToolBarComponent implements OnInit {
   onGetCart(){
     this.bookService.getCart().subscribe((serve) => {
       this.data = serve["data"];
-      for(let book of this.data){
-        this.cartCount += 1;
-     }
-      console.log(serve["data"]);
+      if(this.data !== null){
+        for(let book of this.data){
+          this.cartCount += book.quantity;
+       }
+        console.log(serve["data"]);
+      }
     },
     (error)=>{
       console.log(error);
@@ -34,11 +36,14 @@ export class ToolBarComponent implements OnInit {
   onCart(){
     this.router.navigateByUrl("/cart");
   }
-  increaseCart(){
-    console.log("increase");
-    this.cartCount ++;
+  navigateDashboard(){
+    this.router.navigateByUrl('/dashboard');
   }
-  decreaseCart(){
-    this.cartCount --;
+  increaseCart(count:number){
+    console.log("increase");
+    this.cartCount += count;
+  }
+  decreaseCart(count:number){
+    this.cartCount -= count;
   }
 }

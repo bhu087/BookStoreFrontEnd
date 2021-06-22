@@ -6,6 +6,7 @@ import { LoginComponent } from './components/login/login.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { LoginSignupComponent } from './pages/login-signup/login-signup.component';
+import { OrderSuccessfulComponent } from './pages/order-successful/order-successful.component';
 
 const routes: Routes = 
 [
@@ -26,7 +27,8 @@ const routes: Routes =
     }
   ]
 },
-{path: 'cart', component: DisplayCartComponent}
+{path: 'cart', component: DisplayCartComponent},
+{path: 'orderPlaced', component: OrderSuccessfulComponent}
 ];
 
 @NgModule({

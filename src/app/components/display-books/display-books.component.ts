@@ -11,7 +11,9 @@ export class DisplayBooksComponent implements OnInit {
   cartCount : number = 0;
   col: any = 4;
   data:any;
+  totalItems: number = 0;
   cartData:any;
+  disableWish = false;
   @Output() childToParent = new EventEmitter<Event>();
   @ViewChild(MatMenuTrigger)
   trigger!: MatMenuTrigger;
@@ -48,6 +50,7 @@ notifyDashboard(event:Event){
       this.data = result["data"];
       for(let book of this.data){
         book["clicked"] = false;
+        this.totalItems += 1;
      }
       console.log(result["data"]);
     },
@@ -59,11 +62,13 @@ notifyDashboard(event:Event){
     this.booksService.getCart().subscribe((result) => {
       console.log(result);
       this.cartData = result["data"];
+      if(this.cartData !== null){
       for(let book of this.cartData){
         book["clicked"] = true;
      }
      this.checkBookCartStatus();
       console.log(result["data"]);
+    } 
     },
     (error)=>{
       console.log(error);
@@ -77,6 +82,7 @@ notifyDashboard(event:Event){
             book["clicked"] = true;
           }
         }
+        book["wish"] = false;
      }
    }
    console.log("End here");
@@ -85,5 +91,33 @@ notifyDashboard(event:Event){
     let index = this.data.indexOf(a);
     a.clicked = true;
     this.data[index] = a;
+    this.booksService.addToCart(a.bookID).subscribe((serve) =>
+    {
+      console.log(serve);
+    },
+    (error) =>{
+      console.log(error);
+    });
+  }
+  sort(event:any){
+    this.booksService.getSortedBooks(event).subscribe((serve) =>
+    {
+      this.data = serve['data'];
+    },
+    (error) =>{
+      console.log(error);
+    });
+  }
+  addtoWishList(book:any){
+    let index = this.data.indexOf(book);
+    book.wish = true;
+    this.data[index] = book;
+    this.booksService.addToWishList(book.bookID).subscribe((serve) =>
+    {
+      console.log(serve);
+    },
+    (error) =>{
+      console.log(error);
+    });
   }
 }
