@@ -1,31 +1,114 @@
 <app-tool-bar></app-tool-bar>
-<div class="display-card-container">
-    <mat-card>
-        <h2 class="mycart-header">My Cart</h2>
-        <div *ngFor="let cart of data" class="card-container">
-            <div fxLayout="row" fxLayoutAlign="start center">
-                <div class="cart-image-container">
-                    <img src="../../../assets/Image 11.png">
-                </div>
-                <div class="book-description">
-                    <h2>{{cart.bookName}}</h2>
-                    <h4>{{cart.author}}</h4>
-                    <h3><b>Rs. {{cart.price}}</b></h3>
-                    <div Layout="row" fxLayoutAlign="start center" class="cart-size-container">
-                        <div>
-                            <button mat-mini-fab class="my-fab" (click)="increase(cart)">+</button>
+<div class="cart-container">
+    <div class="display-card-container">
+        <mat-card>
+            <h2 class="mycart-header">My Cart</h2>
+            <div *ngFor="let cart of data" class="card-container">
+                <div fxLayout="row" fxLayoutAlign="start center">
+                    <div class="cart-image-container">
+                        <img src="../../../assets/Image 11.png">
+                    </div>
+                    <div class="book-description">
+                        <h2>{{cart.bookName}}</h2>
+                        <h4>{{cart.author}}</h4>
+                        <h3><b>Rs. {{cart.price}}</b></h3>
+                        <div Layout="row" fxLayoutAlign="start center" class="cart-size-container">
+                            <div>
+                                <button mat-mini-fab class="my-fab" (click)="increase(cart)">+</button>
+                            </div>
+                            <div>
+                                <input value="{{cart.quantity}}" disabled />
+                            </div>
+                            <div>
+                                <button mat-mini-fab class="my-fab" (click)="decrease(cart)">-</button>
+                            </div>
+                            <div class="remove-button"><button mat-button (click)=remove(cart)>REMOVE</button></div>
                         </div>
-                        <div>
-                            <input value="{{cart.quantity}}" disabled />
-                        </div>
-                        <div>
-                            <button mat-mini-fab class="my-fab" (click)="decrease(cart)">-</button>
-                        </div>
-                        <div class="remove-button">Remove</div>
                     </div>
                 </div>
             </div>
-        </div>
-    </mat-card>
+            <div fxLayout="row" fxLayoutAlign="end center">
+                <button mat-raised-button color="primary" (click)="placeOrder()" *ngIf="placeOrderButton">PLACE
+                    ORDER</button>
+            </div>
+        </mat-card>
+    </div>
+    <div class="customer-details-container">
+        <mat-card>
+            <h3>Customer Details</h3>
+            <div *ngIf="customerDetails">
+                <form [formGroup]="addressForm" (ngSubmit)="onAddAddress(addressForm.value)">
+                    <div fxLayout="column" fxLayoutAlign="center start">
+                        <div fxLayout="column" fxLayoutAlign="center start">
+                            <div fxLayout="row" fxLayoutAlign="space-between start" class="name-mobile-input">
+                                <mat-form-field appearance="outline">
+                                    <input matInput placeholder="Name" formControlName="name">
+                                </mat-form-field>
+                                <mat-form-field appearance="outline">
+                                    <input matInput placeholder="Phone Number" formControlName="mobile">
+                                </mat-form-field>
+                            </div>
+                            <div class="pincode-locality-input">
+                                <mat-form-field appearance="outline">
+                                    <input matInput placeholder="Pincode" formControlName="pincode">
+                                </mat-form-field>
+                                <mat-form-field appearance="outline">
+                                    <input matInput placeholder="Locality" formControlName="locality">
+                                </mat-form-field>
+                            </div>
+                            <div>
+                                <mat-form-field class="address-field" appearance="outline">
+                                    <input matInput placeholder="Address" formControlName="address">
+                                </mat-form-field>
+                            </div>
+                            <div class="city-landmark">
+                                <mat-form-field appearance="outline">
+                                    <input matInput placeholder="City/Town" formControlName="city">
+                                </mat-form-field>
+                                <mat-form-field appearance="outline">
+                                    <input matInput placeholder="Land Mark" formControlName="landMark">
+                                </mat-form-field>
+                            </div>
+                            <div>
+                                Type
+                                <mat-radio-group fxLayout="row" fxLayoutAlign="space-between center"
+                                    formControlName="options">
+                                    <mat-radio-button value="Home">Home</mat-radio-button>
+                                    <mat-radio-button value="Work">Work</mat-radio-button>
+                                    <mat-radio-button value="Other">Other</mat-radio-button>
+                                </mat-radio-group>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="continue-button" fxLayout="row" fxLayoutAlign="end center">
+                        <button mat-raised-button color="primary" type="submit" *ngIf="continueButton">CONTINUE</button>
+                    </div>
+                </form>
+            </div>
+        </mat-card>
+    </div>
+    <div class="customer-details-container">
+        <mat-card>
+            <h3>Order Summery</h3>
+            <div *ngIf="orderSummery">
+                <div *ngFor="let cart of data" class="card-container">
+                    <div fxLayout="row" fxLayoutAlign="start center">
+                        <div class="cart-image-container">
+                            <img src="../../../assets/Image 11.png">
+                        </div>
+                        <div class="book-description">
+                            <h2>{{cart.bookName}}</h2>
+                            <h4>{{cart.author}}</h4>
+                            <h3><b>Rs. {{cart.price}}</b></h3>
+                        </div>
+                    </div>
+                </div>
+                <div fxLayout="row" fxLayoutAlign="end center">
+                    <button mat-raised-button color="primary" (click)="onCheckout()">CHECKOUT</button>
+                </div>
+            </div>
+        </mat-card>
+    </div>
 </div>
 <app-footer></app-footer>

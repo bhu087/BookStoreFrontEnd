@@ -26,6 +26,10 @@ import { ToolBarComponent } from './components/tool-bar/tool-bar.component';
 import { FooterComponent } from './components/footer/footer.component';
 import {MatBadgeModule} from '@angular/material/badge';
 import { DisplayCartComponent } from './components/display-cart/display-cart.component';
+import {MatRadioModule} from '@angular/material/radio';
+import { OrderSuccessfulComponent } from './pages/order-successful/order-successful.component';
+import {MatTableModule} from '@angular/material/table';
+import { WishListComponent } from './pages/wish-list/wish-list.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +41,9 @@ import { DisplayCartComponent } from './components/display-cart/display-cart.com
     DisplayBooksComponent,
     ToolBarComponent,
     FooterComponent,
-    DisplayCartComponent
+    DisplayCartComponent,
+    OrderSuccessfulComponent,
+    WishListComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
@@ -57,7 +63,9 @@ import { DisplayCartComponent } from './components/display-cart/display-cart.com
     MatSelectModule,
     MatChipsModule,
     MatMenuModule,
-    MatBadgeModule
+    MatBadgeModule,
+    MatRadioModule,
+    MatTableModule
   ],
   providers: [],
   bootstrap: [AppComponent]

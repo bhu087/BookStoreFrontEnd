@@ -1,16 +1,16 @@
 <div class="all-books-container">
     <div class="sort-selection-container" fxLayout="row" fxLayoutAlign="space-between center">
-        <h4>Books( 100 items)</h4>
+        <h4>Books( {{totalItems}} items)</h4>
         <mat-form-field appearance="outline">
-            <mat-select placeholder="Sort By Relevence">
-                <mat-option value="1">Default</mat-option>
-                <mat-option value="2">High to Low</mat-option>
-                <mat-option value="3">Low to High</mat-option>
+            <mat-select placeholder="Sort By Relevence" (selectionChange)="onSort($event.value)">
+                <mat-option value="Default">Default</mat-option>
+                <mat-option value="HighToLow">High to Low</mat-option>
+                <mat-option value="LowToHigh">Low to High</mat-option>
             </mat-select>
         </mat-form-field>
     </div>
     <div class="grid-display">
-        <mat-grid-list [cols]="col" rowHeight="300px" (window:resize)="onResize($event)" [gutterSize]="'10px'">
+        <mat-grid-list [cols]="col" rowHeight="340px" (window:resize)="onResize($event)" [gutterSize]="'10px'">
             <mat-grid-tile *ngFor="let book of data">
                 <mat-card><!--[matMenuTriggerFor]="menu"-->
 
@@ -24,12 +24,13 @@
                     </mat-card-content>
                     <!-- <div fxLayout="row" fxLayoutAlign="start center"><mat-chip>4.5<mat-icon>star</mat-icon></mat-chip></div> -->
                     <!-- <div class="price-container" fxLayout="row" fxLayoutAlign="start baseline"></div> -->
-                    <div fxLayout="row" fxLayoutAlign="space-between center">
+                    <div fxLayout="row" fxLayoutAlign="space-between end">
                         <button mat-raised-button *ngIf="!book.clicked"
                             (click)="onAddToCart(book); notifyDashboard($event);" class="add-bag-button">ADD TO BAG</button>
-                        <button mat-stroked-button *ngIf="!book.clicked"
-                             class="wihlist-button">WISHLIST</button>
-                             <button mat-stroked-button *ngIf="book.clicked" [disabled]="book.clicked" class="added-button">ADDED TO BAG</button>
+                        <button mat-stroked-button *ngIf="!book.clicked && !book.wish"
+                             class="wihlist-button" (click)="addtoWishList(book)" [disabled]="book.wish">WISHLIST</button>
+                        <button mat-stroked-button *ngIf="!book.clicked && book.wish" class="wihlisted-button" disabled>WISHLISTED</button>
+                        <button mat-stroked-button *ngIf="book.clicked" [disabled]="book.clicked" class="added-button">ADDED TO BAG</button>
                     </div>
                 </mat-card>
                 <!-- <mat-menu #menu="matMenu" [overlapTrigger]="false" xPosition="after">

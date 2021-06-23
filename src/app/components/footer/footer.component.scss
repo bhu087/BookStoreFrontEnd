@@ -1,7 +1,16 @@
 .footer-container{
+    // position: relative;
+    // // top: 100px;
+    // //position: fixed;
+    // bottom: 0;
+    // width: 100%;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    margin-top: 100px;
     .mat-toolbar{
         height: 50px;
-        margin-top: 100%;
+        //margin-top: min(1700px, 5%);;
         color: whitesmoke;
         background-color: #2E1D1E;
         padding-right: 150px;
@@ -11,12 +20,31 @@
         }
     }
 }
+
+
 @media (max-width: 600px) {
-    ::ng-deep .mat-toolbar{
-        justify-content: center !important;
-    align-content: center !important;
-    align-items: center !important;
-        padding-right: 0;
-        padding-left: 0;
-    }
+    .footer-container{
+        width: 100% !important;
+        ::ng-deep .mat-toolbar{
+            padding-right: 0 !important;
+            padding-left: 0 !important;
+            
+        }
+    } 
+}
+@media (max-width: 820px) and (min-width: 601px) {
+    .footer-container{
+        .mat-toolbar{
+            padding-right: 40px;
+            padding-left: 40px;
+        }
+    }  
+}
+@media (max-width: 1095px) and (min-width: 821px){
+    .footer-container{
+        .mat-toolbar{
+            padding-right: 100px;
+            padding-left: 100px;
+        }
+    }  
 }
