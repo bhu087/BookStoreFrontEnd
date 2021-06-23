@@ -1,0 +1,23 @@
+.order-placed-container{
+    min-height: 64%;
+    img{
+        width: 80%;
+    }
+    h3{
+        line-height: 8px !important; 
+    }
+    table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+    td {
+        padding: 25px;
+    }
+    th {
+        padding : 10px;
+        text-align: center;
+    }
+    .continue-shopping-button{
+        padding-top: 20px !important;
+    }
+}

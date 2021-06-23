@@ -1,0 +1,46 @@
+.display-wishlist-container{
+    padding-right: 150px;
+    padding-left: 150px;
+    width: 60%;
+    min-height: 64%;
+    .card-container{
+        padding-bottom: 20px;
+        .book-description{
+            padding-left: 40px;
+            margin-top: -20px;
+            h1, h2, h3, h4, h5, h6{
+                line-height: 20px !important; 
+            }
+            .cart-size-container{
+                input{
+                    margin-right: 10px;
+                    margin-left: 10px;
+                    width: 20px;
+                }
+                .add-button{
+                    display: table-cell;
+                    font-size: 14px;
+                    margin-left: 8px;
+                    min-width: 120px;
+                }
+            }    
+        }
+    }
+    .mat-card{
+        top: 50px;
+        border: 1px solid rgb(170, 168, 168);
+        transition: none !important;
+    box-shadow: none !important;
+    }
+}
+
+@media (max-width: 600px) {
+    .display-wishlist-container{
+        padding-right: 0px;
+        padding-left: 0px;
+        width: 100% !important;
+        .mat-stroked-button{
+            padding: 0 3px !important;
+        }
+    }
+}

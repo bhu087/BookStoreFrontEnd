@@ -1,0 +1,23 @@
+<app-tool-bar></app-tool-bar>
+<div class="display-wishlist-container">
+    <mat-card>
+        <h2 class="mycart-header">My Wishlist</h2>
+        <div *ngFor="let cart of data" class="card-container">
+            <div fxLayout="row" fxLayoutAlign="start center">
+                <div class="cart-image-container">
+                    <img src="../../../assets/Image 11.png">
+                </div>
+                <div class="book-description">
+                    <h2>{{cart.bookName}}</h2>
+                    <h4>{{cart.author}}</h4>
+                    <h3><b>Rs. {{cart.price}}</b></h3>
+                    <div Layout="row" fxLayoutAlign="space-arround center" class="cart-size-container">
+                        <div class="remove-button"><button mat-stroked-button (click)=remove(cart)>REMOVE</button></div>
+                        <div class="add-button"><button mat-stroked-button (click)=addToCart(cart)>ADD TO CART</button></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </mat-card>
+</div>
+<app-footer></app-footer>

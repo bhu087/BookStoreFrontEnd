@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { UserServiceService } from '../../services/userService/user-service.service';
 
 @Component({
@@ -10,7 +11,8 @@ import { UserServiceService } from '../../services/userService/user-service.serv
 export class LoginComponent implements OnInit {
   submitted = false;
   responseData: any;
-  constructor(private formBuilder: FormBuilder, private service: UserServiceService) { }
+  constructor(private formBuilder: FormBuilder, private service: UserServiceService,
+    private router: Router) { }
   loginForm= this.formBuilder.group({
     email : ['', [Validators.required, Validators.email]],//,Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
     password: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(20),Validators.pattern("^(?=.*?[A-Z])(?=.*?[0-9])(?=.*?[^\w\s]).{8,}$")]],
@@ -34,6 +36,7 @@ export class LoginComponent implements OnInit {
         var res = JSON.parse(this.responseData);
         console.log(res['data']);
         localStorage.setItem("Bearer", res['data']);
+        this.router.navigateByUrl('/dashboard');
       },
       (error)=> {
         console.log(error);

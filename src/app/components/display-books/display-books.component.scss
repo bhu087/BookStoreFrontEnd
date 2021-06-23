@@ -2,6 +2,7 @@
     padding-right: 150px;
     padding-left: 150px;
     line-height: 0px !important;
+    min-height: 64%;
     .sort-selection-container{
         padding-top: 20px;
         mat-form-field{
@@ -55,26 +56,37 @@
             background-color: rgb(71, 86, 168);
             color: whitesmoke;
         }
+        .wihlisted-button{
+            width: 100%;
+            background-color: rgb(7, 196, 92);
+            padding: 0 5px;
+        }
     }
 }
 // ::ng-deep mat-card{
 //     padding: 0px !important;
 // }
-h1, h2, h3, h4, h5, h6{
-    line-height: 5px; 
+h1, h2, h4, h5, h6{
+    line-height: 5px !important; 
   }
-mat-grid-tile {
+  h3{
+    line-height: 17px !important;
   }
+  h5{
+    margin: -8px 0px 8px !important;
+  }
+  
   mat-card {
-    width: calc(100% - 47px);
-    height: calc(100% - 45px);
+    width: 220px !important;
+    height: 290px;
     border: 20px 20px 20px 20px;
+    display: inline-grid;
   }
 
   @media (max-width: 600px) {
     .all-books-container{
-        padding-right: 20px;
-        padding-left: 20px;
+        padding-right: 5px;
+        padding-left: 5px;
         .sort-selection-container{
             padding-top: 20px;
             mat-form-field{
@@ -85,12 +97,17 @@ mat-grid-tile {
                 color: black;
               }
         }
-    }
-    mat-grid-tile {
-      }
-      mat-card {
-        width: calc(100% - 45px);
-        height: calc(100% - 45px);
-        border: 20px 20px 20px 20px;
-      }  
+    }  
+}
+@media (max-width: 820px) and (min-width: 601px) {
+    .all-books-container{
+        padding-right: 40px;
+        padding-left: 40px;
+    }  
+}
+@media (max-width: 1095px) and (min-width: 821px){
+    .all-books-container{
+        padding-right: 100px;
+        padding-left: 100px;
+    }  
 }

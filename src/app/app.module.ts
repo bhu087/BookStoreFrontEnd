@@ -24,6 +24,12 @@ import {MatChipsModule} from '@angular/material/chips';
 import {MatMenuModule} from '@angular/material/menu';
 import { ToolBarComponent } from './components/tool-bar/tool-bar.component';
 import { FooterComponent } from './components/footer/footer.component';
+import {MatBadgeModule} from '@angular/material/badge';
+import { DisplayCartComponent } from './components/display-cart/display-cart.component';
+import {MatRadioModule} from '@angular/material/radio';
+import { OrderSuccessfulComponent } from './pages/order-successful/order-successful.component';
+import {MatTableModule} from '@angular/material/table';
+import { WishListComponent } from './pages/wish-list/wish-list.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +40,10 @@ import { FooterComponent } from './components/footer/footer.component';
     DashboardComponent,
     DisplayBooksComponent,
     ToolBarComponent,
-    FooterComponent
+    FooterComponent,
+    DisplayCartComponent,
+    OrderSuccessfulComponent,
+    WishListComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
@@ -53,7 +62,10 @@ import { FooterComponent } from './components/footer/footer.component';
     MatGridListModule,
     MatSelectModule,
     MatChipsModule,
-    MatMenuModule
+    MatMenuModule,
+    MatBadgeModule,
+    MatRadioModule,
+    MatTableModule
   ],
   providers: [],
   bootstrap: [AppComponent]
