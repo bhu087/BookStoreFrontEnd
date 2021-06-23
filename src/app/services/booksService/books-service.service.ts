@@ -58,4 +58,14 @@ export class BooksServiceService {
     var res = this.httpservice.get(`${this.url}Books/getWishList`, true, this.header);
     return res;
   }
+  deleteBookFromWishlist(data:any): Observable<any>{
+    var res = this.httpservice.delete(`${this.url}Books/deleteFromWishlist/${data}`, true, this.header);
+    console.log(res);
+    return res;
+  }
+  addwishToCart(data:any): Observable<any>{
+    var res = this.httpservice.put(`${this.url}Books/addWishToCart/${data}`, data, true, this.header);
+    console.log(res);
+    return res;
+  }
 }

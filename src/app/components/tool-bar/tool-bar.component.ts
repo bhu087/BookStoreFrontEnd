@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChange
 import { Router } from '@angular/router';
 
 import { BooksServiceService } from 'src/app/services/booksService/books-service.service';
+import { UserServiceService } from 'src/app/services/userService/user-service.service';
 
 @Component({
   selector: 'app-tool-bar',
@@ -10,13 +11,18 @@ import { BooksServiceService } from 'src/app/services/booksService/books-service
 })
 export class ToolBarComponent implements OnInit {
   data :any;
+  user : any;
+  userName : any;
   @Output() toolToDash = new EventEmitter<number>();
   @Input() cartCount: number = 0;  //data sharing cart count will be updating according to add to bag click
-  constructor(private bookService: BooksServiceService, private router: Router) {
+  constructor(private bookService: BooksServiceService, private userService: UserServiceService,
+     private router: Router) {
     this.onGetCart();     // initial badge count
+    this.onGetUser();
   }
 
   ngOnInit(): void {
+    
   }
 
   onGetCart(){
@@ -26,7 +32,6 @@ export class ToolBarComponent implements OnInit {
         for(let book of this.data){
           this.cartCount += book.quantity;
        }
-        console.log(serve["data"]);
       }
     },
     (error)=>{
@@ -45,5 +50,22 @@ export class ToolBarComponent implements OnInit {
   }
   decreaseCart(count:number){
     this.cartCount -= count;
+  }
+  onGetUser(){
+    this.userService.getUser().subscribe((serve) => {
+      this.user = serve["data"];
+      this.userName = this.user.name;
+      console.log(this.user);
+    },
+    (error)=>{
+      console.log(error);
+    });
+  }
+  onMyWishlist(){
+    this.router.navigateByUrl('/wishlist');
+  }
+  onLogout(){
+    localStorage.clear();
+    this.router.navigateByUrl('/main/login');
   }
 }

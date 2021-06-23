@@ -7,6 +7,8 @@ import { SignupComponent } from './components/signup/signup.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { LoginSignupComponent } from './pages/login-signup/login-signup.component';
 import { OrderSuccessfulComponent } from './pages/order-successful/order-successful.component';
+import { WishListComponent } from './pages/wish-list/wish-list.component';
+import { AuthGuardGuard } from './services/authGuard/auth-guard.guard';
 
 const routes: Routes = 
 [
@@ -27,8 +29,9 @@ const routes: Routes =
     }
   ]
 },
-{path: 'cart', component: DisplayCartComponent},
-{path: 'orderPlaced', component: OrderSuccessfulComponent}
+{path: 'cart', component: DisplayCartComponent, canActivate: [AuthGuardGuard]},
+{path: 'orderPlaced', component: OrderSuccessfulComponent, canActivate: [AuthGuardGuard]},
+{path: 'wishlist', component: WishListComponent, canActivate: [AuthGuardGuard]}
 ];
 
 @NgModule({

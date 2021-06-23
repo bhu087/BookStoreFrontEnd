@@ -10,7 +10,7 @@ import { BooksServiceService } from 'src/app/services/booksService/books-service
 export class DisplayBooksComponent implements OnInit, AfterContentInit {
   cartCount : number = 0;
   col: any = 4;
-  data:any;
+  data:any = [];
   sortedData:any;
   totalItems: number = 0;
   cartData:any;
@@ -19,16 +19,19 @@ export class DisplayBooksComponent implements OnInit, AfterContentInit {
   @Output() childToParent = new EventEmitter<Event>();
   @ViewChild(MatMenuTrigger)
   trigger!: MatMenuTrigger;
-  constructor(private booksService: BooksServiceService) { }
+  constructor(private booksService: BooksServiceService) { 
+    this.onGetAllBooks();
+  }
 
   ngOnInit(): void {
-    this.onGetAllBooks();
+    
     //this.checkBookCartStatus();
     //this.checkBookWishListtatus();
   }
   ngAfterContentInit(){
     this.onGetCart();
     this.onGetWishList();
+    this.defaultColsize();
   }
 // openMyMenu() {
 //   this.trigger.openMenu();
@@ -41,25 +44,45 @@ notifyDashboard(event:Event){
   console.log(event);
   this.childToParent.emit(event);
 }
-  // for selecting columns 
-  onResize(event:any) {
-    if(window.innerWidth >= 600)
-    {
-      this.col =  4;
+  defaultColsize(){
+    if(window.innerWidth <= 820){
+      this.col = 1;
+    }
+    else if(window.innerWidth > 820 && window.innerWidth <= 1095){
+      this.col = 2;
+    }
+    else if(window.innerWidth > 1095 && window.innerWidth <= 1320){
+      this.col = 3;
     }
     else{
+      this.col = 4;
+    }
+  }
+  // for selecting columns 
+  onResize(event:any) {
+    console.log(window.innerWidth);
+    if(window.innerWidth <= 820){
       this.col = 1;
+    }
+    else if(window.innerWidth > 820 && window.innerWidth <= 1095){
+      this.col = 2;
+    }
+    else if(window.innerWidth > 1095 && window.innerWidth <= 1320){
+      this.col = 3;
+    }
+    else{
+      this.col = 4;
     }
   }
   onGetAllBooks(){
     this.booksService.getAllBooks().subscribe((result) => {
       console.log(result);
       this.data = result["data"];
-      for(let book of this.data){
-        book["clicked"] = false;
-        book["wish"] = false;
-        this.totalItems += 1;
-     }
+       for(let book of this.data){
+         book["clicked"] = false;
+         book["wish"] = false;
+         this.totalItems += 1;
+      }
       console.log(result["data"]);
     },
     (error)=>{
@@ -137,8 +160,11 @@ notifyDashboard(event:Event){
       console.log(error);
     });
   }
+
+
+
   sort(){
-      for(let book of this.sortedData){
+       for(let book of this.sortedData){
        book["clicked"] = false;
        book["wish"] = false;
       }
@@ -149,7 +175,10 @@ notifyDashboard(event:Event){
          }
        }
      }
+     console.log("Sort "+ this.data);
       this.data = this.sortedData;
+      console.log("Sort "+ this.data);
+    
   }
  
   onSort(event:any){

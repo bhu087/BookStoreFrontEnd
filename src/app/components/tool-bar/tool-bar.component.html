@@ -1,4 +1,4 @@
-<div class="toolbar-container" fxLayout="row" fxLayoutAlign="start center">
+<div class="toolbar-container" fxLayout="row" fxLayoutAlign="start">
     <mat-toolbar>
         <div class="toolbar-left-part" fxLayout="row" fxFlex="0 0 0.5 auto" fxLayoutAlign="start center">
             <div fxLayout="row" fxLayoutAlign="space-around center">
@@ -17,12 +17,19 @@
         <div fxLayout="row" fxLayoutAlign="center center">
             <div mat-car-avatar class="profile-pic">
                 <!-- <img mat-card-image src="https://res.cloudinary.com/bhu087/image/upload/v1621412984/ocgt4xpa6zqcgeivfr0j.jpg" /> -->
-                <button mat-button>
+                <button mat-button [matMenuTriggerFor]="menu">
                     <div class="cart-icon" fxLayout="column" fxLayoutAlign="center center">
                         <mat-icon>perm_identity</mat-icon>
-                        <mat-label>Bhushan</mat-label>
+                        <mat-label>{{userName}}</mat-label>
                     </div>
                 </button>
+                <div>
+                <mat-menu #menu="matMenu" fxLayout="column" fxLayoutAlign="center center">
+                    <h3>Hello, {{userName}}</h3>
+                    <button mat-menu-item (click)="onMyWishlist()"><mat-icon>favorite_border</mat-icon>My Wishlist</button>
+                    <button mat-stroked-button>Logout</button>
+                </mat-menu>
+            </div>
             </div>
             <div>
                 <!-- <div>

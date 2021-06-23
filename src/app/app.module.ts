@@ -29,6 +29,7 @@ import { DisplayCartComponent } from './components/display-cart/display-cart.com
 import {MatRadioModule} from '@angular/material/radio';
 import { OrderSuccessfulComponent } from './pages/order-successful/order-successful.component';
 import {MatTableModule} from '@angular/material/table';
+import { WishListComponent } from './pages/wish-list/wish-list.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import {MatTableModule} from '@angular/material/table';
     ToolBarComponent,
     FooterComponent,
     DisplayCartComponent,
-    OrderSuccessfulComponent
+    OrderSuccessfulComponent,
+    WishListComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
