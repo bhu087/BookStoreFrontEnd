@@ -54,4 +54,8 @@ export class BooksServiceService {
     console.log(res);
     return res;
   }
+  getWishList(): Observable<any>{
+    var res = this.httpservice.get(`${this.url}Books/getWishList`, true, this.header);
+    return res;
+  }
 }

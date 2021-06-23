@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
+import { AfterContentInit, Component, DoCheck, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
 import { MatMenuTrigger } from '@angular/material/menu';
 import { BooksServiceService } from 'src/app/services/booksService/books-service.service';
 
@@ -7,12 +7,14 @@ import { BooksServiceService } from 'src/app/services/booksService/books-service
   templateUrl: './display-books.component.html',
   styleUrls: ['./display-books.component.scss']
 })
-export class DisplayBooksComponent implements OnInit {
+export class DisplayBooksComponent implements OnInit, AfterContentInit {
   cartCount : number = 0;
   col: any = 4;
   data:any;
+  sortedData:any;
   totalItems: number = 0;
   cartData:any;
+  wishListData: any;
   disableWish = false;
   @Output() childToParent = new EventEmitter<Event>();
   @ViewChild(MatMenuTrigger)
@@ -21,7 +23,12 @@ export class DisplayBooksComponent implements OnInit {
 
   ngOnInit(): void {
     this.onGetAllBooks();
+    //this.checkBookCartStatus();
+    //this.checkBookWishListtatus();
+  }
+  ngAfterContentInit(){
     this.onGetCart();
+    this.onGetWishList();
   }
 // openMyMenu() {
 //   this.trigger.openMenu();
@@ -50,6 +57,7 @@ notifyDashboard(event:Event){
       this.data = result["data"];
       for(let book of this.data){
         book["clicked"] = false;
+        book["wish"] = false;
         this.totalItems += 1;
      }
       console.log(result["data"]);
@@ -74,19 +82,49 @@ notifyDashboard(event:Event){
       console.log(error);
     });
   }
-  checkBookCartStatus(){
-    for(let book of this.data){
-      for(let cart of this.cartData){
-        if(book.bookID === cart.bookID){
-          if(cart.clicked === true){
-            book["clicked"] = true;
-          }
-        }
-        book["wish"] = false;
+  onGetWishList(){
+    this.booksService.getWishList().subscribe((result) => {
+      this.wishListData = result["data"];
+      if(this.wishListData !== null){
+      for(let book of this.wishListData){
+        book["wish"] = true;
      }
-   }
-   console.log("End here");
+     this.checkBookWishListtatus();
+    } 
+    },
+    (error)=>{
+      console.log(error);
+    });
   }
+  checkBookCartStatus(){
+    console.log(this.data);
+    if(this.cartData !== null){
+      for(let book of this.data){
+        for(let cart of this.cartData){
+          if(book.bookID === cart.bookID){
+            if(cart.clicked === true){
+              book["clicked"] = true;
+            }
+          }
+       }
+     }
+    }
+  }
+  checkBookWishListtatus(){
+    console.log(this.data);
+    if(this.wishListData !== null){
+      for(let book of this.data){
+        for(let cart of this.wishListData){
+          if(book.bookID === cart.bookID){
+            if(cart.wish === true){
+              book["wish"] = true;
+            }
+          }
+       }
+     }
+    }
+  }
+
   onAddToCart(a:any){
     let index = this.data.indexOf(a);
     a.clicked = true;
@@ -99,25 +137,41 @@ notifyDashboard(event:Event){
       console.log(error);
     });
   }
-  sort(event:any){
-    this.booksService.getSortedBooks(event).subscribe((serve) =>
-    {
-      this.data = serve['data'];
-    },
-    (error) =>{
-      console.log(error);
-    });
+  sort(){
+      for(let book of this.sortedData){
+       book["clicked"] = false;
+       book["wish"] = false;
+      }
+      for(let book of this.data){
+       for(let sortBook of this.sortedData){
+         if(book.bookID === sortBook.bookID){
+           sortBook = book;
+         }
+       }
+     }
+      this.data = this.sortedData;
+  }
+ 
+  onSort(event:any){
+     this.booksService.getSortedBooks(event).subscribe((serve) =>
+      {
+        this.sortedData = serve['data'];
+        this.sort();
+      },
+      (error) =>{
+        console.log(error);
+      });
   }
   addtoWishList(book:any){
-    let index = this.data.indexOf(book);
-    book.wish = true;
-    this.data[index] = book;
-    this.booksService.addToWishList(book.bookID).subscribe((serve) =>
-    {
-      console.log(serve);
-    },
-    (error) =>{
-      console.log(error);
-    });
-  }
+     let index = this.data.indexOf(book);
+     book.wish = true;
+     this.data[index] = book;
+     this.booksService.addToWishList(book.bookID).subscribe((serve) =>
+     {
+       console.log(serve);
+     },
+     (error) =>{
+       console.log(error);
+     });
+   }
 }
