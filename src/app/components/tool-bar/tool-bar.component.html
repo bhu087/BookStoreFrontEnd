@@ -27,8 +27,8 @@
                 <mat-menu #menu="matMenu" fxLayout="column" fxLayoutAlign="center center">
                     <h3>Hello, {{userName}}</h3>
                     <button mat-menu-item (click)="onMyWishlist()"><mat-icon>favorite_border</mat-icon>My Wishlist</button>
-                    <button mat-stroked-button *ngIf="loginStatus" (click)="onLogout()">Logout</button>
-                    <button mat-stroked-button *ngIf="!loginStatus" (click)="onLogin()">Login/Signup</button>
+                    <button mat-raised-button *ngIf="loginStatus" (click)="onLogout()">Logout</button>
+                    <button mat-raised-button *ngIf="!loginStatus" (click)="onLogin()" class="login-signup-button">Login/Signup</button>
                 </mat-menu>
             </div>
             </div>

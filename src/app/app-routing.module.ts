@@ -29,9 +29,9 @@ const routes: Routes =
     }
   ]
 },
-{path: 'cart', component: DisplayCartComponent}, //, canActivate: [AuthGuardGuard]},
-{path: 'orderPlaced', component: OrderSuccessfulComponent}, //, canActivate: [AuthGuardGuard]},
-{path: 'wishlist', component: WishListComponent} //, canActivate: [AuthGuardGuard]}
+{path: 'cart', component: DisplayCartComponent, canActivate: [AuthGuardGuard]},
+{path: 'orderPlaced', component: OrderSuccessfulComponent, canActivate: [AuthGuardGuard]},
+{path: 'wishlist', component: WishListComponent, canActivate: [AuthGuardGuard]}
 ];
 
 @NgModule({

@@ -1,6 +1,6 @@
 import { HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { observable, Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { HttpServiceService } from '../httpService/http-service.service';
 
@@ -10,26 +10,37 @@ import { HttpServiceService } from '../httpService/http-service.service';
 export class UserServiceService {
 
    url = environment.baseUrl;
-   header = {
-    headers: new HttpHeaders({
-      'authorization': `Bearer ${localStorage.Bearer}`,
-      'content-Type': 'application/json'
-    })
-  }
+   
    constructor(private httpService: HttpServiceService) { }
 
-   login(data: any){
+   login(data: any): Observable<any>{
      return this.httpService.post(`${this.url}User/login`, data);
    }
-   register(data:any){
+   register(data:any): Observable<any>{
     return this.httpService.post(`${this.url}User/register`, data);
    }
-   addNewAddress(data:any){
-    var res = this.httpService.put(`${this.url}User/addAddress/${data}`, data, true, this.header);
+   addNewAddress(data:any): Observable<any>{
+    var header = {
+      headers: new HttpHeaders({
+        'authorization': `Bearer ${localStorage.Bearer}`,
+        'content-Type': 'application/json'
+      })
+    }
+    var res = this.httpService.put(`${this.url}User/addAddress/${data}`, data, true, header);
     return res;
    }
    getUser(): Observable<any>{
-    var res = this.httpService.get(`${this.url}User/getUser`, true, this.header);
-    return res;
+    var header = {
+      headers: new HttpHeaders({
+        'authorization': `Bearer ${localStorage.Bearer}`,
+        'content-Type': 'application/json'
+      })
+    }
+     if(localStorage.getItem("Bearer")){
+      var res = this.httpService.get(`${this.url}User/getUser`, true, header);
+      return res;
+     }
+    else
+    return new Observable<null>();
   }
 }

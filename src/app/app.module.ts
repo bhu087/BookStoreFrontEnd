@@ -32,6 +32,9 @@ import {MatTableModule} from '@angular/material/table';
 import { WishListComponent } from './pages/wish-list/wish-list.component';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { AuthGuardGuard } from './services/authGuard/auth-guard.guard';
+import { UserServiceService } from './services/userService/user-service.service';
+import { BooksServiceService } from './services/booksService/books-service.service';
 
 @NgModule({
   declarations: [
@@ -71,7 +74,9 @@ import { NgxPaginationModule } from 'ngx-pagination';
     MatSnackBarModule,
     NgxPaginationModule
   ],
-  providers: [],
+  providers: [
+    AuthGuardGuard
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,4 +1,4 @@
-import { AfterContentChecked, AfterContentInit, AfterViewInit, Component, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
+import { AfterContentChecked, AfterContentInit, AfterViewChecked, AfterViewInit, Component, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
 import { ToolBarComponent } from 'src/app/components/tool-bar/tool-bar.component';
 import { BooksServiceService } from 'src/app/services/booksService/books-service.service';
 
@@ -13,7 +13,13 @@ export class DashboardComponent implements OnInit {
   // child_id!: number;
   data:any;
   cartCount: number = 0;
+  @ViewChild(ToolBarComponent)
+  toolBar!: ToolBarComponent;
   constructor(private bookService: BooksServiceService) { }
+  
+  ngAfterViewInit(): void {
+    
+  }
   ngOnInit(): void {
     this.onGetCart();  //this is for initial badge count
   }

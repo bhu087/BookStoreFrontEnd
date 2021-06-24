@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { BooksServiceService } from 'src/app/services/booksService/books-service.service';
@@ -9,7 +9,7 @@ import { UserServiceService } from 'src/app/services/userService/user-service.se
   templateUrl: './tool-bar.component.html',
   styleUrls: ['./tool-bar.component.scss']
 })
-export class ToolBarComponent implements OnInit {
+export class ToolBarComponent implements OnInit, AfterViewInit {
   data :any;
   user : any;
   userName : any;
@@ -18,13 +18,18 @@ export class ToolBarComponent implements OnInit {
   @Input() cartCount: number = 0;  //data sharing cart count will be updating according to add to bag click
   constructor(private bookService: BooksServiceService, private userService: UserServiceService,
      private router: Router) {
-    this.onGetCart();     // initial badge count
-    this.onGetUser();
+      this.onGetCart(); // initial badge count
+  }
+  ngAfterViewInit(): void {
+    setTimeout(() => {
+      this.onGetUser();
+      console.log("Hello");
+      }, 0)
   }
   
 
-  ngOnInit(): void {
-    //this.loginState();
+  ngOnInit(): void { 
+    this.loginState();
   }
 
   loginState(){
@@ -75,7 +80,7 @@ export class ToolBarComponent implements OnInit {
   }
   onLogout(){
     localStorage.removeItem("Bearer");
-    this.router.navigateByUrl('dashboard');
+    this.router.navigateByUrl('/dashboard');
     window.location.reload();
   }
   onLogin(){

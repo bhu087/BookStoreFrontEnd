@@ -1,6 +1,11 @@
 .toolbar-container{
     min-height: 15%;
     top: 0;
+    ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
+        background-color: white !important;
+        color: white;
+        border-radius: 5px 5px 5px 5px !important;
+    }
     .mat-toolbar{
         padding-right: 150px;
         padding-left: 150px;
@@ -28,14 +33,13 @@
         color: white;
         line-height: 15px !important;
     }
+    ::ng-deep .mat-raised-button{
+        color: #A03037 !important;
+        border: 2px solid #A03037 !important;
+    }
 }
 ::ng-deep .mat-menu-content {
     padding: 30px;
-}
-::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
-    background-color: white !important;
-    color: white;
-    border-radius: 5px 5px 5px 5px !important;
 }
 ::ng-deep .mat-badge-content {
     background: #A03037;
@@ -58,16 +62,16 @@
                } 
             }
         }
-        .profile-pic{
-            img{
-                width: 40px;
-                height: 40px;
-            }
-        }
         .cart-icon{
             color: white;
             line-height: 15px !important;
         }
+    }
+}
+
+@media (max-width: 600px){
+    .toolbar-container{
+        min-height: 0 !important;
     }
 }
 @media (max-width: 820px) and (min-width: 601px) {

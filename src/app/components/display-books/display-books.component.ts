@@ -73,14 +73,12 @@ notifyDashboard(event:Event){
   }
   onGetAllBooks(){
     this.booksService.getAllBooks().subscribe((result) => {
-      console.log(result);
       this.data = result["data"];
        for(let book of this.data){
          book["clicked"] = false;
          book["wish"] = false;
          this.totalItems += 1;
       }
-      console.log(result["data"]);
     },
     (error)=>{
       console.log(error);
@@ -88,14 +86,12 @@ notifyDashboard(event:Event){
   }
   onGetCart(){
     this.booksService.getCart().subscribe((result) => {
-      console.log(result);
       this.cartData = result["data"];
       if(this.cartData !== null){
       for(let book of this.cartData){
         book["clicked"] = true;
      }
      this.checkBookCartStatus();
-      console.log(result["data"]);
     } 
     },
     (error)=>{
@@ -117,7 +113,6 @@ notifyDashboard(event:Event){
     });
   }
   checkBookCartStatus(){
-    console.log(this.data);
     if(this.cartData !== null){
       for(let book of this.data){
         for(let cart of this.cartData){
@@ -131,7 +126,6 @@ notifyDashboard(event:Event){
     }
   }
   checkBookWishListtatus(){
-    console.log(this.data);
     if(this.wishListData !== null){
       for(let book of this.data){
         for(let cart of this.wishListData){
@@ -161,6 +155,7 @@ notifyDashboard(event:Event){
 
 
   sort(){
+    console.log(this.data);
        for(let book of this.sortedData){
        book["clicked"] = false;
        book["wish"] = false;
@@ -172,10 +167,8 @@ notifyDashboard(event:Event){
          }
        }
      }
-     console.log("Sort "+ this.data);
       this.data = this.sortedData;
-      console.log("Sort "+ this.data);
-    
+    console.log(this.data);
   }
  
   onSort(event:any){
@@ -183,6 +176,7 @@ notifyDashboard(event:Event){
       {
         this.sortedData = serve['data'];
         this.sort();
+        this.ngAfterViewInit();
       },
       (error) =>{
         console.log(error);

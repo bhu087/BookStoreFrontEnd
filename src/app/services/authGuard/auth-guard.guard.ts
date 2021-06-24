@@ -9,11 +9,13 @@ export class AuthGuardGuard implements CanActivate {
 
   }
  canActivate(){
-   if(localStorage.getItem('Bearer')){
+   if(localStorage.getItem('Bearer') !== null){
+     console.log("present");
      return true;
    }
    else{
-     this.router.navigateByUrl('/main/login');
+    console.log("absent ");
+    this.router.navigateByUrl('/main/login');
      return false;
    }
  }

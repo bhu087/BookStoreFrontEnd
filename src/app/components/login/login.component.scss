@@ -3,7 +3,11 @@
     padding-right: 10%;
     .login-input{
         ::ng-deep .mat-form-field-flex > .mat-form-field-infix { padding: 0.4em 0px !important;}
-        ::ng-deep .mat-form-field-label-wrapper { top: -1.5em; }
+        ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
+            background-color: white !important;
+            color: rgb(88, 87, 87);
+            border-radius: 5px 5px 5px 5px !important;
+        }
     }
     .google-button{
         width: 45% !important;
@@ -12,6 +16,6 @@
         width: 45% !important;
     }
     button{
-        background-color: rgb(141, 5, 5) !important;
+        background-color: #A03037 !important;
     }
 }

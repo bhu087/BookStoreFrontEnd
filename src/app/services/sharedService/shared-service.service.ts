@@ -7,6 +7,14 @@ import { BehaviorSubject } from 'rxjs';
 export class SharedServiceService {
 
   private data = "";  
+  // private triggerDashboard = false;
+
+  // setTrigger(){
+
+  // }
+  // getTrigger(){
+
+  // }
   
  setOption(value: any) {      
     this.data = value;  

@@ -43,8 +43,8 @@
                             disabled>WISHLISTED</button>
                         <button mat-stroked-button *ngIf="book.clicked" [disabled]="book.clicked"
                             class="added-button">ADDED TO BAG</button>
-                        <button mat-stroked-button *ngIf="book.quantity == 0"
-                            class="long-wish-button">WISHLIST</button>
+                        <button mat-stroked-button *ngIf="!book.clicked && !book.wish && book.quantity == 0"
+                            class="long-wish-button" (click)="addtoWishList(book)">WISHLIST</button>
                     </div>
                 </mat-card>
                 <mat-menu #menu="matMenu" [overlapTrigger]="false" xPosition="before">

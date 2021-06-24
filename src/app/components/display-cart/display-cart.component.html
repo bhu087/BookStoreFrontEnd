@@ -4,7 +4,7 @@
         <mat-card>
             <h2 class="mycart-header">My Cart</h2>
             <div *ngFor="let cart of data" class="card-container">
-                <div fxLayout="row" fxLayoutAlign="start center">
+                <div fxLayout="row" fxLayoutAlign="start center" class="all-cart-books">
                     <div class="cart-image-container">
                         <img src="../../../assets/Image 11.png">
                     </div>
@@ -27,9 +27,8 @@
                     </div>
                 </div>
             </div>
-            <div fxLayout="row" fxLayoutAlign="end center">
-                <button mat-raised-button color="primary" (click)="placeOrder()" *ngIf="placeOrderButton">PLACE
-                    ORDER</button>
+            <div fxLayout="row" fxLayoutAlign="end center" class="place-order">
+                <button mat-raised-button color="primary" (click)="placeOrder()" *ngIf="placeOrderButton">PLACE ORDER</button>
             </div>
         </mat-card>
     </div>
@@ -39,7 +38,7 @@
             <div *ngIf="customerDetails">
                 <form [formGroup]="addressForm" (ngSubmit)="onAddAddress(addressForm.value)">
                     <div fxLayout="column" fxLayoutAlign="center start">
-                        <div fxLayout="column" fxLayoutAlign="center start">
+                        <div fxLayout="column" fxLayoutAlign="center start" class="address-form-container">
                             <div fxLayout="row" fxLayoutAlign="space-between start" class="name-mobile-input">
                                 <mat-form-field appearance="outline">
                                     <input matInput placeholder="Name" class="form-control" formControlName="name" [ngClass]="{ 'is-invalid':addressFormControls.name.errors }">
@@ -96,12 +95,12 @@
             </div>
         </mat-card>
     </div>
-    <div class="customer-details-container">
+    <div class="checkout-details-container">
         <mat-card>
             <h3>Order Summery</h3>
             <div *ngIf="orderSummery">
-                <div *ngFor="let cart of data" class="card-container">
-                    <div fxLayout="row" fxLayoutAlign="start center">
+                <div *ngFor="let cart of data">
+                    <div fxLayout="row" fxLayoutAlign="start center" class="card-container">
                         <div class="cart-image-container">
                             <img src="../../../assets/Image 11.png">
                         </div>
