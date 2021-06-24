@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { ToolBarComponent } from 'src/app/components/tool-bar/tool-bar.component';
 import { BooksServiceService } from 'src/app/services/booksService/books-service.service';
 
@@ -7,11 +7,14 @@ import { BooksServiceService } from 'src/app/services/booksService/books-service
   templateUrl: './wish-list.component.html',
   styleUrls: ['./wish-list.component.scss']
 })
-export class WishListComponent implements OnInit {
+export class WishListComponent implements OnInit, AfterViewInit {
 
   @ViewChild(ToolBarComponent)
   toolBar!: ToolBarComponent;
   constructor(private bookService : BooksServiceService) { }
+  ngAfterViewInit(): void {
+    this.onGetWishlist();
+  }
   data:any;
   ngOnInit(): void {
     this.onGetWishlist();
@@ -19,7 +22,6 @@ export class WishListComponent implements OnInit {
 onGetWishlist(){
   this.bookService.getWishList().subscribe((serve)=>{
     this.data = serve["data"];
-    console.log(this.data);
   },
   (error)=>{
     console.log(error);
@@ -28,8 +30,7 @@ onGetWishlist(){
 }
 remove(book:any){
   this.bookService.deleteBookFromWishlist(book.bookID).subscribe((serve)=>{
-    console.log(serve["data"]);
-    window.location.reload();
+    this.onGetWishlist();
   },
   (error)=>{
     console.log(error);
@@ -37,10 +38,10 @@ remove(book:any){
   );
 }
 addToCart(book:any){
-//this.toolBar.increaseCart(1);
 this.bookService.addwishToCart(book.bookID).subscribe((serve)=>{
-  console.log();
-  window.location.reload();
+  this.onGetWishlist();
+  this.toolBar.increaseCart(1);
+  //window.location.reload();
 },
 (error)=>{
   console.log(error);

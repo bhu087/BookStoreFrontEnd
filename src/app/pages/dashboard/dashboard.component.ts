@@ -25,9 +25,8 @@ export class DashboardComponent implements OnInit {
       this.data = serve["data"];
       if(this.data !== null){
         for(let book of this.data){
-          this.cartCount += 1;
+          this.cartCount += book.quantity;
        }
-        console.log(serve["data"]);
       }
       else{
         this.cartCount = 0;

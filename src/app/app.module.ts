@@ -30,6 +30,8 @@ import {MatRadioModule} from '@angular/material/radio';
 import { OrderSuccessfulComponent } from './pages/order-successful/order-successful.component';
 import {MatTableModule} from '@angular/material/table';
 import { WishListComponent } from './pages/wish-list/wish-list.component';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -65,7 +67,9 @@ import { WishListComponent } from './pages/wish-list/wish-list.component';
     MatMenuModule,
     MatBadgeModule,
     MatRadioModule,
-    MatTableModule
+    MatTableModule,
+    MatSnackBarModule,
+    NgxPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]

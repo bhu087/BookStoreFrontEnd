@@ -13,6 +13,7 @@ export class ToolBarComponent implements OnInit {
   data :any;
   user : any;
   userName : any;
+  loginStatus!: boolean;
   @Output() toolToDash = new EventEmitter<number>();
   @Input() cartCount: number = 0;  //data sharing cart count will be updating according to add to bag click
   constructor(private bookService: BooksServiceService, private userService: UserServiceService,
@@ -20,9 +21,19 @@ export class ToolBarComponent implements OnInit {
     this.onGetCart();     // initial badge count
     this.onGetUser();
   }
+  
 
   ngOnInit(): void {
-    
+    //this.loginState();
+  }
+
+  loginState(){
+    if(localStorage.getItem("Bearer")){
+      this.loginStatus = true;
+    }
+    else{
+      this.loginStatus = false;
+    }
   }
 
   onGetCart(){
@@ -45,7 +56,6 @@ export class ToolBarComponent implements OnInit {
     this.router.navigateByUrl('/dashboard');
   }
   increaseCart(count:number){
-    console.log("increase");
     this.cartCount += count;
   }
   decreaseCart(count:number){
@@ -55,7 +65,6 @@ export class ToolBarComponent implements OnInit {
     this.userService.getUser().subscribe((serve) => {
       this.user = serve["data"];
       this.userName = this.user.name;
-      console.log(this.user);
     },
     (error)=>{
       console.log(error);
@@ -65,7 +74,11 @@ export class ToolBarComponent implements OnInit {
     this.router.navigateByUrl('/wishlist');
   }
   onLogout(){
-    localStorage.clear();
+    localStorage.removeItem("Bearer");
+    this.router.navigateByUrl('dashboard');
+    window.location.reload();
+  }
+  onLogin(){
     this.router.navigateByUrl('/main/login');
   }
 }

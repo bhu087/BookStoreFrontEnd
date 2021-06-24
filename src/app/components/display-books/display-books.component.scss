@@ -57,6 +57,7 @@
             color: whitesmoke;
         }
         .wihlisted-button{
+            width: 100%;
             background-color: rgb(7, 196, 92);
             padding: 0 5px;
         }
@@ -76,12 +77,67 @@ h1, h2, h4, h5, h6{
   }
   
   mat-card {
-    width: 220px !important;
-    height: 290px;
+    width: 250px !important;
+    height: 306px;
     border: 20px 20px 20px 20px;
     display: inline-grid;
+    padding: 0 !important;
   }
+  ///
+.mat-grid-tile-content{
+height: 100% !important;
+}
+.books-button{
+    padding: 0 20px 12px;
+    .add-bag-button{
+        padding-left: 10px !important;
+    }
+    .add-bag-button, .wihlist-button{
+        max-width: 100px;
+    }
+    .added-button{
+        width: 100% !important;
+        background-color: rgb(71, 86, 168);
+        color: whitesmoke;
+    }
+    .wihlisted-button{
+        width: 100% !important;
+        background-color: rgb(70, 2, 55);
+        color: whitesmoke;
+    }
+    .long-wish-button{
+        width: 100%;
+    }
+}
+.book-details{
+    padding-left: 20px;
+}
+.book-image{
+background-color: whitesmoke;
+}
+///
+  .my-pagination{
+      padding-top: 10px !important;
+      ::ng-deep .current {background: #A03037;}
+  } 
 
+.book-img{
+    position: relative;
+}
+.out-of-stock{
+    position: absolute;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 75%;
+    height: 30px;
+    top: 140px;
+    left:30px;
+}
+::ng-deep.mat-menu-panel {
+    max-width: 375px !important;
+}
   @media (max-width: 600px) {
     .all-books-container{
         padding-right: 5px;

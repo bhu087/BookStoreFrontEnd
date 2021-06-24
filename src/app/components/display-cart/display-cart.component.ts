@@ -1,7 +1,9 @@
-import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { BooksServiceService } from 'src/app/services/booksService/books-service.service';
+import { SharedServiceService } from 'src/app/services/sharedService/shared-service.service';
+import { SnackBarService } from 'src/app/services/snackBar/snack-bar.service';
 import { UserServiceService } from 'src/app/services/userService/user-service.service';
 import { ToolBarComponent } from '../tool-bar/tool-bar.component';
 
@@ -10,13 +12,19 @@ import { ToolBarComponent } from '../tool-bar/tool-bar.component';
   templateUrl: './display-cart.component.html',
   styleUrls: ['./display-cart.component.scss']
 })
-export class DisplayCartComponent implements OnInit {
+export class DisplayCartComponent implements OnInit, AfterViewInit {
 
   @ViewChild(ToolBarComponent)
   toolBar!: ToolBarComponent;
   constructor(private bookService: BooksServiceService,
      private router: Router, private formBuilder: FormBuilder,
-     private userService: UserServiceService) { }
+     private userService: UserServiceService, private snackBar: SnackBarService,
+     private sharedService: SharedServiceService) { }
+  ngAfterViewInit(): void {
+    this.onCart();
+  }
+  
+  submitted = false;
   data:any;
   address:any;
   increaseButton = true;
@@ -73,7 +81,6 @@ export class DisplayCartComponent implements OnInit {
       //decreasing cart value by one
       this.toolBar.decreaseCart(1);
       this.bookService.decreaseCartCount(cart.bookID).subscribe((serve)=>{
-        console.log(serve);
       },
       (error) =>
       {
@@ -88,9 +95,8 @@ export class DisplayCartComponent implements OnInit {
   }
   remove(book:any){
     this.bookService.deleteBookFromCart(book.bookID).subscribe((serve)=>{
-      console.log(serve);
       this.toolBar.decreaseCart(book.quantity);
-      window.location.reload();
+      this.ngAfterViewInit();
     },
     (error) =>
     {
@@ -119,8 +125,8 @@ export class DisplayCartComponent implements OnInit {
 });
 get addressFormControls() { return this.addressForm.controls; }
 onAddAddress(newAddress:any){
+  this.submitted = true;
     if(this.addressForm.invalid){
-      console.log("invalid");
       return;
     }
     this.continueButton = false;
@@ -138,11 +144,10 @@ onAddAddress(newAddress:any){
     });
   }
   onCheckout(){
-    console.log("oncheck");
     this.bookService.placeOrder(this.address).subscribe((serve)=>{
-      console.log(serve);
-      //window.location.reload();
+      this.sharedService.setOption(serve["data"]);
       this.router.navigateByUrl('/orderPlaced');
+      this.snackBar.openSnackBar("Order Placed Successfully", "Success!!!");
     },
     (error)=>{
       console.log(error);

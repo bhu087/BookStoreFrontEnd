@@ -1,13 +1,15 @@
-import { AfterContentInit, Component, DoCheck, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
+import { AfterContentInit, AfterViewInit, Component, DoCheck, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
 import { MatMenuTrigger } from '@angular/material/menu';
+import { from } from 'rxjs';
 import { BooksServiceService } from 'src/app/services/booksService/books-service.service';
+
 
 @Component({
   selector: 'app-display-books',
   templateUrl: './display-books.component.html',
   styleUrls: ['./display-books.component.scss']
 })
-export class DisplayBooksComponent implements OnInit, AfterContentInit {
+export class DisplayBooksComponent implements OnInit, AfterViewInit {
   cartCount : number = 0;
   col: any = 4;
   data:any = [];
@@ -16,29 +18,25 @@ export class DisplayBooksComponent implements OnInit, AfterContentInit {
   cartData:any;
   wishListData: any;
   disableWish = false;
+  showMatMenu=false;
   @Output() childToParent = new EventEmitter<Event>();
   @ViewChild(MatMenuTrigger)
-  trigger!: MatMenuTrigger;
+  menu!: MatMenuTrigger;
+  p:any;
+  public pageSlice = this.data.slice(0,12);
   constructor(private booksService: BooksServiceService) { 
     this.onGetAllBooks();
   }
-
-  ngOnInit(): void {
-    
-    //this.checkBookCartStatus();
-    //this.checkBookWishListtatus();
-  }
-  ngAfterContentInit(){
+  ngAfterViewInit(): void {
+    setTimeout(() => {
     this.onGetCart();
     this.onGetWishList();
+    }, 100)
+  }
+
+  ngOnInit(): void {
     this.defaultColsize();
   }
-// openMyMenu() {
-//   this.trigger.openMenu();
-// } 
-// closeMyMenu() {
-//   this.trigger.closeMenu();
-// }
 
 notifyDashboard(event:Event){
   console.log(event);
@@ -60,7 +58,6 @@ notifyDashboard(event:Event){
   }
   // for selecting columns 
   onResize(event:any) {
-    console.log(window.innerWidth);
     if(window.innerWidth <= 820){
       this.col = 1;
     }
@@ -203,4 +200,21 @@ notifyDashboard(event:Event){
        console.log(error);
      });
    }
+   openMyMenu(){
+    this.menu.openMenu();
+    console.log("Mouse Enter");
+   }
+   closeMyMenu(){
+     this.menu.closeMenu();
+    console.log("Leave");
+   }
+
+   dataRefresher:any;
+   refreshData(){
+    this.dataRefresher =
+      setInterval(() => {
+        this.onGetAllBooks();
+        //Passing the false flag would prevent page reset to 1 and hinder user interaction
+      }, 30000);  
+  }
 }
