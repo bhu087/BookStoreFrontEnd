@@ -28,10 +28,6 @@
         h5{
             color: rgb(167, 167, 167);
         }
-        // mat-chip{
-        //     background-color: green;
-        //     color: whitesmoke;
-        // }
         mat-icon{
             font-size: small;
             display: contents !important;
@@ -63,9 +59,13 @@
         }
     }
 }
-// ::ng-deep mat-card{
-//     padding: 0px !important;
-// }
+.book-description{
+
+}
+::ng-deep.mat-menu-panel {
+    /* These numbers are my requirement, put something which suits yours */
+      transform: translate(0px, 32px); 
+}
 h1, h2, h4, h5, h6{
     line-height: 5px !important; 
   }
@@ -112,10 +112,9 @@ height: 100% !important;
 .book-details{
     padding-left: 20px;
 }
-.book-image{
-background-color: whitesmoke;
-}
-///
+// .book-image{
+// background-color: whitesmoke;
+// }
   .my-pagination{
       padding-top: 10px !important;
       ::ng-deep .current {background: #A03037;}
@@ -132,8 +131,9 @@ background-color: whitesmoke;
     align-items: center;
     width: 75%;
     height: 30px;
-    top: 140px;
+    top: 125px;
     left:30px;
+    box-shadow: 5px 1px 8px 4px rgb(0 0 0 / 35%)
 }
 ::ng-deep.mat-menu-panel {
     max-width: 375px !important;

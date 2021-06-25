@@ -41,7 +41,6 @@ export class LoginComponent implements OnInit, OnDestroy {
         console.log(res['data']);
         localStorage.setItem("Bearer", res['data']);
         window.location.href="/dashboard"
-        //this.router.navigateByUrl('/dashboard');
       },
       (error)=> {
         console.log(error);

@@ -38,7 +38,8 @@ export class DisplayCartComponent implements OnInit, AfterViewInit {
   }
  
   onCart(){
-    this.bookService.getCart().subscribe((serve) => {
+    if(localStorage.getItem("Bearer")){
+      this.bookService.getCart().subscribe((serve) => {
       this.data = serve["data"];
       if(this.data === null){
         this.placeOrderButton = false;
@@ -48,6 +49,10 @@ export class DisplayCartComponent implements OnInit, AfterViewInit {
       console.log(error);
     }
     );
+    }
+    else{
+      this.router.navigateByUrl("/main/login");
+    }
   }
   increase(cart:any){
     if(cart.quantity < 10){
@@ -114,13 +119,13 @@ export class DisplayCartComponent implements OnInit, AfterViewInit {
   }
 
   addressForm = this.formBuilder.group({
-    city : ['', [Validators.required]],
-    name : ['', [Validators.required]],
-    mobile : ['', [Validators.required]],
-    pincode : ['', [Validators.required]],
-    locality : ['', [Validators.required]],
-    address : ['', [Validators.required]],
-    landMark : ['', [Validators.required]],
+    city : ['', [Validators.required], [Validators.minLength(3)]],
+    name : ['', [Validators.required], [Validators.minLength(3)]],
+    mobile : ['', [Validators.required], [Validators.pattern("^[6-9]{1}[0-9]{9}$")]],
+    pincode : ['', [Validators.required], [Validators.pattern("^[1-9]{1}[0-9]{5}$")]],
+    locality : ['', [Validators.required], [Validators.minLength(5)]],
+    address : ['', [Validators.required], [Validators.minLength(10)]],
+    landMark : ['', [Validators.required], [Validators.minLength(5)]],
     options : ['', [Validators.required]]
 });
 get addressFormControls() { return this.addressForm.controls; }

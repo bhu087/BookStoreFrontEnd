@@ -80,8 +80,9 @@ export class ToolBarComponent implements OnInit, AfterViewInit {
   }
   onLogout(){
     localStorage.removeItem("Bearer");
-    this.router.navigateByUrl('/dashboard');
-    window.location.reload();
+    window.location.href="/dashboard"
+    // this.router.navigateByUrl('/dashboard');
+    // window.location.reload();
   }
   onLogin(){
     this.router.navigateByUrl('/main/login');

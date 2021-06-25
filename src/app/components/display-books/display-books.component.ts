@@ -1,5 +1,6 @@
 import { AfterContentInit, AfterViewInit, Component, DoCheck, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
 import { MatMenuTrigger } from '@angular/material/menu';
+import { Router } from '@angular/router';
 import { from } from 'rxjs';
 import { BooksServiceService } from 'src/app/services/booksService/books-service.service';
 
@@ -19,12 +20,13 @@ export class DisplayBooksComponent implements OnInit, AfterViewInit {
   wishListData: any;
   disableWish = false;
   showMatMenu=false;
+  // bookBackGroundColor = "F5F5F5";
   @Output() childToParent = new EventEmitter<Event>();
   @ViewChild(MatMenuTrigger)
   menu!: MatMenuTrigger;
   p:any;
   public pageSlice = this.data.slice(0,12);
-  constructor(private booksService: BooksServiceService) { 
+  constructor(private booksService: BooksServiceService, private router: Router) { 
     this.onGetAllBooks();
   }
   ngAfterViewInit(): void {
@@ -37,7 +39,6 @@ export class DisplayBooksComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     this.defaultColsize();
   }
-
 notifyDashboard(event:Event){
   console.log(event);
   this.childToParent.emit(event);
@@ -85,32 +86,32 @@ notifyDashboard(event:Event){
     });
   }
   onGetCart(){
-    this.booksService.getCart().subscribe((result) => {
-      this.cartData = result["data"];
-      if(this.cartData !== null){
-      for(let book of this.cartData){
-        book["clicked"] = true;
-     }
-     this.checkBookCartStatus();
-    } 
-    },
-    (error)=>{
-      console.log(error);
-    });
+      this.booksService.getCart().subscribe((result) => {
+        this.cartData = result["data"];
+        if(this.cartData !== null){
+        for(let book of this.cartData){
+          book["clicked"] = true;
+       }
+       this.checkBookCartStatus();
+      } 
+      },
+      (error)=>{
+        console.log(error);
+      });
   }
   onGetWishList(){
-    this.booksService.getWishList().subscribe((result) => {
-      this.wishListData = result["data"];
-      if(this.wishListData !== null){
-      for(let book of this.wishListData){
-        book["wish"] = true;
-     }
-     this.checkBookWishListtatus();
-    } 
-    },
-    (error)=>{
-      console.log(error);
-    });
+      this.booksService.getWishList().subscribe((result) => {
+        this.wishListData = result["data"];
+        if(this.wishListData !== null){
+        for(let book of this.wishListData){
+          book["wish"] = true;
+       }
+       this.checkBookWishListtatus();
+      } 
+      },
+      (error)=>{
+        console.log(error);
+      });
   }
   checkBookCartStatus(){
     if(this.cartData !== null){
@@ -140,16 +141,21 @@ notifyDashboard(event:Event){
   }
 
   onAddToCart(a:any){
-    let index = this.data.indexOf(a);
-    a.clicked = true;
-    this.data[index] = a;
-    this.booksService.addToCart(a.bookID).subscribe((serve) =>
-    {
-      console.log(serve);
-    },
-    (error) =>{
-      console.log(error);
-    });
+    if(localStorage.getItem("Bearer")){
+      let index = this.data.indexOf(a);
+      a.clicked = true;
+      this.data[index] = a;
+      this.booksService.addToCart(a.bookID).subscribe((serve) =>
+      {
+        console.log(serve);
+      },
+      (error) =>{
+        console.log(error);
+      });
+    }
+    else{
+      this.router.navigateByUrl('/main/login');
+    }
   }
 
 
@@ -183,16 +189,21 @@ notifyDashboard(event:Event){
       });
   }
   addtoWishList(book:any){
-     let index = this.data.indexOf(book);
-     book.wish = true;
-     this.data[index] = book;
-     this.booksService.addToWishList(book.bookID).subscribe((serve) =>
-     {
-       console.log(serve);
-     },
-     (error) =>{
-       console.log(error);
-     });
+    if(localStorage.getItem("Bearer")){
+      let index = this.data.indexOf(book);
+      book.wish = true;
+      this.data[index] = book;
+      this.booksService.addToWishList(book.bookID).subscribe((serve) =>
+      {
+        console.log(serve);
+      },
+      (error) =>{
+        console.log(error);
+      });
+    }
+     else{
+       this.router.navigateByUrl('/main/login');
+     }
    }
    openMyMenu(){
     this.menu.openMenu();
@@ -208,7 +219,6 @@ notifyDashboard(event:Event){
     this.dataRefresher =
       setInterval(() => {
         this.onGetAllBooks();
-        //Passing the false flag would prevent page reset to 1 and hinder user interaction
       }, 30000);  
   }
 }

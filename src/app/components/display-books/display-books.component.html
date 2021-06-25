@@ -12,58 +12,73 @@
     <div class="grid-display">
         <mat-grid-list [cols]="col" rowHeight="340px" (window:resize)="onResize($event)" [gutterSize]="'10px'">
             <mat-grid-tile *ngFor="let book of data | paginate: { itemsPerPage: 12, currentPage: p}">
-                <mat-card [matMenuTriggerFor]="menu">
-                    <!--[matMenuTriggerFor]="menu"  (mouseleave)="closeMyMenu(); $event.stopPropagation()" (mouseenter)="openMyMenu()"-->
+                <div class="display-mat-card-container">
+                    <mat-card>
+                        <!--[matMenuTriggerFor]="menu"  (mouseleave)="closeMyMenu(); $event.stopPropagation()" (mouseenter)="openMyMenu()"-->
 
-                    <div fxLayout="row" fxLayoutAlign="center center" class="book-image">
-                        <!--(mouseenter)="openMyMenu()"-->
-                        <div >
-                            <div class="book-img">
-                                <img mat-card-image src="../../../assets/Image 11.png">
+                        <div fxLayout="row" fxLayoutAlign="center center" class="book-image" [style.background-color]="book.quantity > 0 ? '#F5F5F5': '#c4c4c4'">
+                            <!--(mouseenter)="openMyMenu()"-->
+                            <div>
+                                <div class="book-img">
+                                    <img mat-card-image src="../../../assets/Image 11.png">
+                                </div>
+                                <div class="out-of-stock" *ngIf="book.quantity == 0">OUT OF STOCK</div>
                             </div>
-                            <div class="out-of-stock" *ngIf="book.quantity == 0">OUT OF STOCK</div>
                         </div>
-                    </div>
-                    <div class="book-details">
-                    <mat-card-content fxLayout="column" fxLayoutAlign="left">
-                        <h3><b>{{book.bookName}}</b></h3>
-                        <h5>{{book.author}}</h5>
-                        <h3><b>Rs. {{book.price}}</b></h3>
-                    </mat-card-content>
+                        <div class="book-details">
+                            <mat-card-content fxLayout="column" fxLayoutAlign="left">
+                                <h3><b>{{book.bookName}}</b></h3>
+                                <h5>{{book.author}}</h5>
+                                <h3><b>Rs. {{book.price}}</b></h3>
+                            </mat-card-content>
+                        </div>
+                        <!-- <div fxLayout="row" fxLayoutAlign="start center"><mat-chip>4.5<mat-icon>star</mat-icon></mat-chip></div> -->
+                        <!-- <div class="price-container" fxLayout="row" fxLayoutAlign="start baseline"></div> -->
+                        <div fxLayout="row" fxLayoutAlign="space-between end" class="books-button">
+                            <button mat-raised-button *ngIf="!book.clicked && !book.wish && book.quantity != 0"
+                                (click)="onAddToCart(book); notifyDashboard($event);" class="add-bag-button">ADD TO
+                                BAG</button>
+                            <button mat-stroked-button *ngIf="!book.clicked && !book.wish && book.quantity != 0"
+                                class="wihlist-button" (click)="addtoWishList(book)"
+                                [disabled]="book.wish">WISHLIST</button>
+                            <button mat-stroked-button *ngIf="!book.clicked && book.wish" class="wihlisted-button"
+                                disabled>WISHLISTED</button>
+                            <button mat-stroked-button *ngIf="book.clicked" [disabled]="book.clicked"
+                                class="added-button">ADDED TO BAG</button>
+                            <button mat-stroked-button *ngIf="!book.clicked && !book.wish && book.quantity == 0"
+                                class="long-wish-button" (click)="addtoWishList(book)">WISHLIST</button>
+                        </div>
+                    </mat-card>
                 </div>
-                    <!-- <div fxLayout="row" fxLayoutAlign="start center"><mat-chip>4.5<mat-icon>star</mat-icon></mat-chip></div> -->
-                    <!-- <div class="price-container" fxLayout="row" fxLayoutAlign="start baseline"></div> -->
-                    <div fxLayout="row" fxLayoutAlign="space-between end" class="books-button">
-                        <button mat-raised-button *ngIf="!book.clicked && !book.wish && book.quantity != 0"
-                            (click)="onAddToCart(book); notifyDashboard($event);" class="add-bag-button">ADD TO
-                            BAG</button>
-                        <button mat-stroked-button *ngIf="!book.clicked && !book.wish && book.quantity != 0" class="wihlist-button"
-                            (click)="addtoWishList(book)" [disabled]="book.wish">WISHLIST</button>
-                        <button mat-stroked-button *ngIf="!book.clicked && book.wish" class="wihlisted-button"
-                            disabled>WISHLISTED</button>
-                        <button mat-stroked-button *ngIf="book.clicked" [disabled]="book.clicked"
-                            class="added-button">ADDED TO BAG</button>
-                        <button mat-stroked-button *ngIf="!book.clicked && !book.wish && book.quantity == 0"
-                            class="long-wish-button" (click)="addtoWishList(book)">WISHLIST</button>
-                    </div>
-                </mat-card>
-                <mat-menu #menu="matMenu" [overlapTrigger]="false" xPosition="before">
-                    <div>
-                        <p>You enter your book description when you set up your title and provide your basic book
-                            information,
-                            called book metadata. You're able to set your book's metadata when you own the ISBN
-                            associated
-                            with your book, which is one of the many reasons it's important to own your own ISBN.
-                            A good book description is detailed, descriptive copy that is good for public display,
-                            used for your book marketing, book discovery, and for sales purposes. It helps potential
-                            buyers find and understand your book. It's your pitch. Your chance to get people interested.
-                            And it's your opportunity to get search engines interested as well. The better your book
-                            description,
-                            the better your chances for gaining visibility and remaining visible. </p>
-                    </div>
-                </mat-menu>
-
+                <!-- <div class="book-description">
+                    <p>You enter your book description when you set up your title and provide your basic book
+                        information,
+                        called book metadata. You're able to set your book's metadata when you own the ISBN
+                        associated
+                        with your book, which is one of the many reasons it's important to own your own ISBN.
+                        A good book description is detailed, descriptive copy that is good for public display,
+                        used for your book marketing, book discovery, and for sales purposes. It helps potential
+                        buyers find and understand your book. It's your pitch. Your chance to get people interested.
+                        And it's your opportunity to get search engines interested as well. The better your book
+                        description,
+                        the better your chances for gaining visibility and remaining visible. </p>
+                </div> -->
             </mat-grid-tile>
+            <!-- <mat-menu #menu="matMenu" [overlapTrigger]="false" xPosition="after">
+                <div>
+                    <p>You enter your book description when you set up your title and provide your basic book
+                        information,
+                        called book metadata. You're able to set your book's metadata when you own the ISBN
+                        associated
+                        with your book, which is one of the many reasons it's important to own your own ISBN.
+                        A good book description is detailed, descriptive copy that is good for public display,
+                        used for your book marketing, book discovery, and for sales purposes. It helps potential
+                        buyers find and understand your book. It's your pitch. Your chance to get people interested.
+                        And it's your opportunity to get search engines interested as well. The better your book
+                        description,
+                        the better your chances for gaining visibility and remaining visible. </p>
+                </div>
+            </mat-menu> -->
         </mat-grid-list>
     </div>
 </div>
