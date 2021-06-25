@@ -35,6 +35,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { AuthGuardGuard } from './services/authGuard/auth-guard.guard';
 import { UserServiceService } from './services/userService/user-service.service';
 import { BooksServiceService } from './services/booksService/books-service.service';
+import { SearchServiceService } from './services/searchService/search-service.service';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { BooksServiceService } from './services/booksService/books-service.servi
     FooterComponent,
     DisplayCartComponent,
     OrderSuccessfulComponent,
-    WishListComponent
+    WishListComponent,
+    SearchServiceService
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),

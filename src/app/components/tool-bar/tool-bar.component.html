@@ -11,7 +11,7 @@
             </div>
             <mat-form-field appearance="outline" fxLayout="row" fxLayoutAlign="left center">
                 <mat-icon matPrefix>search</mat-icon>
-                <input matInput placeholder="Search ...">
+                <input matInput type="text" placeholder="Search ..." (keyup)="notifyDashBoard($event)">
             </mat-form-field>
         </div>
         <div fxLayout="row" fxLayoutAlign="center center">

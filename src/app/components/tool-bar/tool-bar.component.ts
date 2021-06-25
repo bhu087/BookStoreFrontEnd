@@ -14,7 +14,7 @@ export class ToolBarComponent implements OnInit, AfterViewInit {
   user : any;
   userName : any;
   loginStatus!: boolean;
-  @Output() toolToDash = new EventEmitter<number>();
+  @Output() toolToDash = new EventEmitter<any>();
   @Input() cartCount: number = 0;  //data sharing cart count will be updating according to add to bag click
   constructor(private bookService: BooksServiceService, private userService: UserServiceService,
      private router: Router) {
@@ -23,10 +23,13 @@ export class ToolBarComponent implements OnInit, AfterViewInit {
   ngAfterViewInit(): void {
     setTimeout(() => {
       this.onGetUser();
-      console.log("Hello");
       }, 0)
   }
   
+  notifyDashBoard(event:any){
+    this.toolToDash.emit(event);
+    console.log(event.target.value);
+  }
 
   ngOnInit(): void { 
     this.loginState();

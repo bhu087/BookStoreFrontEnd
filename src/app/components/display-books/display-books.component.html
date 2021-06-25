@@ -11,7 +11,7 @@
     </div>
     <div class="grid-display">
         <mat-grid-list [cols]="col" rowHeight="340px" (window:resize)="onResize($event)" [gutterSize]="'10px'">
-            <mat-grid-tile *ngFor="let book of data | paginate: { itemsPerPage: 12, currentPage: p}">
+            <mat-grid-tile *ngFor="let book of data | bookFilter: searchTerm | paginate: { itemsPerPage: 12, currentPage: p} ">
                 <div class="display-mat-card-container">
                     <mat-card>
                         <!--[matMenuTriggerFor]="menu"  (mouseleave)="closeMyMenu(); $event.stopPropagation()" (mouseenter)="openMyMenu()"-->

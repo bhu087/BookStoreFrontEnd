@@ -20,11 +20,15 @@ export class DisplayBooksComponent implements OnInit, AfterViewInit {
   wishListData: any;
   disableWish = false;
   showMatMenu=false;
+  //searchTerm!: string;
   // bookBackGroundColor = "F5F5F5";
   @Output() childToParent = new EventEmitter<Event>();
   @ViewChild(MatMenuTrigger)
   menu!: MatMenuTrigger;
+  @Input()
+  searchTerm!: string;  
   p:any;
+
   public pageSlice = this.data.slice(0,12);
   constructor(private booksService: BooksServiceService, private router: Router) { 
     this.onGetAllBooks();
@@ -43,6 +47,9 @@ notifyDashboard(event:Event){
   console.log(event);
   this.childToParent.emit(event);
 }
+  searchStringCall(){
+    console.log(this.searchTerm);
+  }
   defaultColsize(){
     if(window.innerWidth <= 820){
       this.col = 1;

@@ -1,4 +1,5 @@
 import { AfterContentChecked, AfterContentInit, AfterViewChecked, AfterViewInit, Component, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
+import { DisplayBooksComponent } from 'src/app/components/display-books/display-books.component';
 import { ToolBarComponent } from 'src/app/components/tool-bar/tool-bar.component';
 import { BooksServiceService } from 'src/app/services/booksService/books-service.service';
 
@@ -13,12 +14,20 @@ export class DashboardComponent implements OnInit {
   // child_id!: number;
   data:any;
   cartCount: number = 0;
+  searchTerm: any;
   @ViewChild(ToolBarComponent)
   toolBar!: ToolBarComponent;
+  @ViewChild(DisplayBooksComponent)
+  displayBooks!: DisplayBooksComponent;
   constructor(private bookService: BooksServiceService) { }
   
   ngAfterViewInit(): void {
     
+  }
+  searcStringFromTool(searchString:any){
+    this.searchTerm = searchString.target.value;
+    console.log(searchString.target.value);
+    this.displayBooks.searchStringCall();
   }
   ngOnInit(): void {
     this.onGetCart();  //this is for initial badge count
