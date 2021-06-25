@@ -1,0 +1,160 @@
+.cart-container{
+    min-height: 64%;
+.display-card-container{
+    padding-right: 150px;
+    padding-left: 150px;
+    width: 60%;
+    .card-container{
+        padding-bottom: 20px;
+    }
+    .mat-card{
+        top: 50px;
+        border: 1px solid rgb(170, 168, 168);
+        transition: none !important;
+        box-shadow: none !important;
+    }
+    .mycart-header{
+        padding-left: 20px !important;
+    }
+    .cart-image-container{
+        padding-left: 20px;
+    }
+    .book-description{
+        padding-left: 40px;
+        margin-top: -20px;
+        h1, h2, h3, h4, h5, h6{
+            line-height: 20px !important; 
+        }
+        .cart-size-container{
+            input{
+                margin-right: 10px;
+                margin-left: 10px;
+                width: 20px;
+            }
+            .remove-button{
+                margin-left: 20px;
+            }
+        }     
+    }
+}
+.customer-details-container{
+    padding-right: 150px;
+    padding-left: 150px;
+    width: 60%;
+    margin-top: 20px;
+    .mat-card{
+        top: 50px;
+    }
+    ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
+        color: rgb(141, 141, 141);
+    }
+    mat-form-field{
+        padding-right: 20px;
+    }
+    .address-field{
+            width: 420px;
+    }
+    mat-radio-button{
+        padding-right: 20px;
+    }
+}
+.checkout-details-container{
+    padding-right: 150px;
+    padding-left: 150px;
+    width: 60%;
+    margin-top: 20px;
+    .mat-card{
+        top: 50px;
+    }
+    .book-description{
+        padding-left: 40px;
+        margin-top: -20px;
+        h1, h2, h3, h4, h5, h6{
+            line-height: 20px !important; 
+        }     
+    }
+}
+}
+.my-fab {
+    width: 20px;
+    height: 20px;
+    line-height: 14px;
+    font-size: 14px;
+    background: whitesmoke;
+    color: rgb(0, 0, 0);
+    border: 1px solid rgb(122, 122, 122);
+        transition: none !important;
+    box-shadow: none !important;
+
+    ::ng-deep .mat-button-wrapper{
+        line-height: 14px;
+        padding: 0;
+         .mat-icon {
+             font-size: 14px;
+             padding-right: 4px;
+             padding-top: 4px;
+         }
+   }
+}
+
+@media (max-width: 600px) {
+    .display-card-container{
+        padding-right: 0px !important;
+        padding-left: 0px !important;
+        width: 100% !important;
+        align-items: end !important;
+        .card-container{
+            .all-cart-books{
+                align-items: end !important;
+            }
+        }
+        .cart-image-container{
+            padding-left: 0px !important;
+        }
+        .book-description{
+            padding-left: 5px !important;
+        }
+        .mat-card{
+            top: 0px !important;
+        }
+        .place-order{
+            padding-right: 0px;
+        }
+        .book-description{
+            padding-left: 40px;
+            margin-top: 0px !important;
+            h1, h2, h3, h4, h5, h6{
+                line-height: 20px !important; 
+            }     
+        }
+    }
+    .customer-details-container{
+        padding-right: 0 !important;
+        padding-left: 0px !important;
+        width: 100% !important;
+        margin-top: 20px;
+        .address-form-container{
+            align-items: initial !important;
+        }
+        .mat-card{
+            top: 0 !important;
+        }
+        .name-mobile-input, .pincode-locality-input, .city-landmark{
+            display: inline !important;
+            justify-content: center !important;
+            align-items: center !important;
+            width: 100% !important;
+        }
+        mat-form-field{
+            padding-right: 0px !important;
+            width: 100% !important;
+        }
+    }
+    .checkout-details-container{
+        .card-container{
+            .book-description{
+                padding-left: 5px !important;
+            }
+        }
+    }
+}

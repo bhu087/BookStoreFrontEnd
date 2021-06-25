@@ -1,0 +1,121 @@
+<app-tool-bar></app-tool-bar>
+<div class="cart-container">
+    <div class="display-card-container">
+        <mat-card>
+            <h2 class="mycart-header">My Cart</h2>
+            <div *ngFor="let cart of data" class="card-container">
+                <div fxLayout="row" fxLayoutAlign="start center" class="all-cart-books">
+                    <div class="cart-image-container">
+                        <img src="../../../assets/Image 11.png">
+                    </div>
+                    <div class="book-description">
+                        <h2>{{cart.bookName}}</h2>
+                        <h4>{{cart.author}}</h4>
+                        <h3><b>Rs. {{cart.price}}</b></h3>
+                        <div Layout="row" fxLayoutAlign="start center" class="cart-size-container">
+                            <div>
+                                <button mat-mini-fab class="my-fab" (click)="increase(cart)">+</button>
+                            </div>
+                            <div>
+                                <input value="{{cart.quantity}}" disabled />
+                            </div>
+                            <div>
+                                <button mat-mini-fab class="my-fab" (click)="decrease(cart)">-</button>
+                            </div>
+                            <div class="remove-button"><button mat-button (click)=remove(cart)>REMOVE</button></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="end center" class="place-order">
+                <button mat-raised-button color="primary" (click)="placeOrder()" *ngIf="placeOrderButton">PLACE ORDER</button>
+            </div>
+        </mat-card>
+    </div>
+    <div class="customer-details-container">
+        <mat-card>
+            <h3>Customer Details</h3>
+            <div *ngIf="customerDetails">
+                <form [formGroup]="addressForm" (ngSubmit)="onAddAddress(addressForm.value)">
+                    <div fxLayout="column" fxLayoutAlign="center start">
+                        <div fxLayout="column" fxLayoutAlign="center start" class="address-form-container">
+                            <div fxLayout="row" fxLayoutAlign="space-between start" class="name-mobile-input">
+                                <mat-form-field appearance="outline">
+                                    <input matInput placeholder="Name" class="form-control" formControlName="name" [ngClass]="{ 'is-invalid':addressFormControls.name.errors }">
+                                    <mat-error *ngIf="(submitted && addressFormControls.name.errors?.required) || (addressFormControls.name.errors && addressFormControls.name.touched)">Name is required & min. 3 Letters</mat-error>
+                                </mat-form-field>
+                                <mat-form-field appearance="outline">
+                                    <input matInput placeholder="Phone Number" formControlName="mobile" [ngClass]="{ 'is-invalid':addressFormControls.mobile.errors }">
+                                    <mat-error *ngIf="(submitted && addressFormControls.mobile.errors?.required) || (addressFormControls.mobile.errors && addressFormControls.mobile.touched)">Mobile Required</mat-error>
+                                </mat-form-field>
+                            </div>
+                            <div class="pincode-locality-input">
+                                <mat-form-field appearance="outline">
+                                    <input matInput placeholder="Pincode" formControlName="pincode" [ngClass]="{ 'is-invalid':addressFormControls.pincode.errors }">
+                                    <mat-error *ngIf="(submitted && addressFormControls.pincode.errors?.required) || (addressFormControls.pincode.errors && addressFormControls.pincode.touched)">Pincode Required</mat-error>
+                                </mat-form-field>
+                                <mat-form-field appearance="outline">
+                                    <input matInput placeholder="Locality" formControlName="locality" [ngClass]="{ 'is-invalid':addressFormControls.locality.errors }">
+                                    <mat-error *ngIf="(submitted && addressFormControls.locality.errors?.required) || (addressFormControls.locality.errors && addressFormControls.locality.touched)">Locality required</mat-error>
+                                </mat-form-field>
+                            </div>
+                            <div>
+                                <mat-form-field class="address-field" appearance="outline">
+                                    <input matInput placeholder="Address" formControlName="address" [ngClass]="{ 'is-invalid':addressFormControls.address.errors }">
+                                    <mat-error *ngIf="(submitted && addressFormControls.address.errors?.required) || (addressFormControls.address.errors && addressFormControls.address.touched)">Address Required</mat-error>
+                                </mat-form-field>
+                            </div>
+                            <div class="city-landmark">
+                                <mat-form-field appearance="outline">
+                                    <input matInput placeholder="City/Town" formControlName="city" [ngClass]="{ 'is-invalid':addressFormControls.city.errors }">
+                                    <mat-error *ngIf="(submitted && addressFormControls.city.errors?.required) || (addressFormControls.city.errors && addressFormControls.city.touched)">City required</mat-error>
+                                </mat-form-field>
+                                <mat-form-field appearance="outline">
+                                    <input matInput placeholder="Land Mark" formControlName="landMark" [ngClass]="{ 'is-invalid':addressFormControls.landMarkerrors }">
+                                    <mat-error *ngIf="(submitted && addressFormControls.landMark.errors?.required) || (addressFormControls.landMark.errors && addressFormControls.landMark.touched)">Land mark required</mat-error>
+                                </mat-form-field>
+                            </div>
+                            <div>
+                                Type
+                                <mat-radio-group fxLayout="row" fxLayoutAlign="space-between center"
+                                    formControlName="options" [ngClass]="{ 'is-invalid':addressFormControls.options.errors}">
+                                    <mat-radio-button value="Home">Home</mat-radio-button>
+                                    <mat-radio-button value="Work">Work</mat-radio-button>
+                                    <mat-radio-button value="Other">Other</mat-radio-button>
+                                </mat-radio-group>
+                                <mat-error *ngIf="(submitted && addressFormControls.options.errors?.required) || (addressFormControls.options.errors && addressFormControls.options.touched)">Select one option</mat-error>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="continue-button" fxLayout="row" fxLayoutAlign="end center">
+                        <button mat-raised-button color="primary" type="submit" *ngIf="continueButton">CONTINUE</button>
+                    </div>
+                </form>
+            </div>
+        </mat-card>
+    </div>
+    <div class="checkout-details-container">
+        <mat-card>
+            <h3>Order Summery</h3>
+            <div *ngIf="orderSummery">
+                <div *ngFor="let cart of data">
+                    <div fxLayout="row" fxLayoutAlign="start center" class="card-container">
+                        <div class="cart-image-container">
+                            <img src="../../../assets/Image 11.png">
+                        </div>
+                        <div class="book-description">
+                            <h2>{{cart.bookName}}</h2>
+                            <h4>{{cart.author}}</h4>
+                            <h3><b>Rs. {{cart.price}}</b></h3>
+                        </div>
+                    </div>
+                </div>
+                <div fxLayout="row" fxLayoutAlign="end center">
+                    <button mat-raised-button color="primary" (click)="onCheckout()">CHECKOUT</button>
+                </div>
+            </div>
+        </mat-card>
+    </div>
+</div>
+<app-footer></app-footer>

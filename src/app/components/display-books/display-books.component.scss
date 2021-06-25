@@ -1,0 +1,168 @@
+.all-books-container{
+    padding-right: 150px;
+    padding-left: 150px;
+    line-height: 0px !important;
+    min-height: 64%;
+    .sort-selection-container{
+        padding-top: 20px;
+        mat-form-field{
+            font-size: x-small;
+            display: block !important;
+        } 
+        ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
+            color: black;
+          }
+    }
+    .grid-display{
+        .inner-mat-car{
+            background-color: chartreuse;
+            height: 50%;
+            width: 100% !important;
+            padding: 0px !important;
+        }
+        img{
+            width: 120px;
+            height: 150px;
+            padding-top: 20px;
+        }
+        h5{
+            color: rgb(167, 167, 167);
+        }
+        // mat-chip{
+        //     background-color: green;
+        //     color: whitesmoke;
+        // }
+        mat-icon{
+            font-size: small;
+            display: contents !important;
+        }
+        .ratings-count{
+            h5{
+                padding-top: 50px !important;
+            }
+        }
+        .price-container{
+            height: 25px !important;
+            h1, h2, h3, h4, h5, h6{
+                line-height: 30px !important; 
+            }
+        }
+        .add-bag-button{
+            background-color: #A03037;
+            color: whitesmoke;
+        }
+        .added-button{
+            width: 100%;
+            background-color: rgb(71, 86, 168);
+            color: whitesmoke;
+        }
+        .wihlisted-button{
+            width: 100%;
+            background-color: rgb(7, 196, 92);
+            padding: 0 5px;
+        }
+    }
+}
+// ::ng-deep mat-card{
+//     padding: 0px !important;
+// }
+h1, h2, h4, h5, h6{
+    line-height: 5px !important; 
+  }
+  h3{
+    line-height: 17px !important;
+  }
+  h5{
+    margin: -8px 0px 8px !important;
+  }
+  
+  mat-card {
+    width: 250px !important;
+    height: 306px;
+    border: 20px 20px 20px 20px;
+    display: inline-grid;
+    padding: 0 !important;
+  }
+  ///
+.mat-grid-tile-content{
+height: 100% !important;
+}
+.books-button{
+    padding: 0 20px 12px;
+    .add-bag-button{
+        padding-left: 10px !important;
+    }
+    .add-bag-button, .wihlist-button{
+        max-width: 100px;
+    }
+    .added-button{
+        width: 100% !important;
+        background-color: rgb(71, 86, 168);
+        color: whitesmoke;
+    }
+    .wihlisted-button{
+        width: 100% !important;
+        background-color: rgb(70, 2, 55);
+        color: whitesmoke;
+    }
+    .long-wish-button{
+        width: 100%;
+    }
+}
+.book-details{
+    padding-left: 20px;
+}
+.book-image{
+background-color: whitesmoke;
+}
+///
+  .my-pagination{
+      padding-top: 10px !important;
+      ::ng-deep .current {background: #A03037;}
+  } 
+
+.book-img{
+    position: relative;
+}
+.out-of-stock{
+    position: absolute;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 75%;
+    height: 30px;
+    top: 140px;
+    left:30px;
+}
+::ng-deep.mat-menu-panel {
+    max-width: 375px !important;
+}
+  @media (max-width: 600px) {
+    .all-books-container{
+        padding-right: 5px;
+        padding-left: 5px;
+        .sort-selection-container{
+            padding-top: 20px;
+            mat-form-field{
+                font-size: x-small;
+                display: block !important;
+            } 
+            ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
+                color: black;
+              }
+        }
+    }  
+}
+@media (max-width: 820px) and (min-width: 601px) {
+    .all-books-container{
+        padding-right: 40px;
+        padding-left: 40px;
+    }  
+}
+@media (max-width: 1095px) and (min-width: 821px){
+    .all-books-container{
+        padding-right: 100px;
+        padding-left: 100px;
+    }  
+}

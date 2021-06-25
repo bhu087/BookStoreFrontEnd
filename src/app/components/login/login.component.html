@@ -1,5 +1,5 @@
 <div>
-    <form [formGroup]="loginForm" (ngSubmit)="login(loginForm.value)">
+    <form [formGroup]="loginForm" (ngSubmit)="onLogin(loginForm.value)">
         <div class="login-form" fxLayout="column">
             Email ID
             <mat-form-field class="login-input" appearance="outline">

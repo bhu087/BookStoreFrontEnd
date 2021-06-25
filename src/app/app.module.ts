@@ -15,13 +15,40 @@ import {MatInputModule} from '@angular/material/input';
 import {MatIconModule} from '@angular/material/icon';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import { DisplayBooksComponent } from './components/display-books/display-books.component';
+import {MatGridListModule} from '@angular/material/grid-list';
+import {MatSelectModule} from '@angular/material/select';
+import {MatChipsModule} from '@angular/material/chips';
+import {MatMenuModule} from '@angular/material/menu';
+import { ToolBarComponent } from './components/tool-bar/tool-bar.component';
+import { FooterComponent } from './components/footer/footer.component';
+import {MatBadgeModule} from '@angular/material/badge';
+import { DisplayCartComponent } from './components/display-cart/display-cart.component';
+import {MatRadioModule} from '@angular/material/radio';
+import { OrderSuccessfulComponent } from './pages/order-successful/order-successful.component';
+import {MatTableModule} from '@angular/material/table';
+import { WishListComponent } from './pages/wish-list/wish-list.component';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { AuthGuardGuard } from './services/authGuard/auth-guard.guard';
+import { UserServiceService } from './services/userService/user-service.service';
+import { BooksServiceService } from './services/booksService/books-service.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginSignupComponent,
     LoginComponent,
-    SignupComponent
+    SignupComponent,
+    DashboardComponent,
+    DisplayBooksComponent,
+    ToolBarComponent,
+    FooterComponent,
+    DisplayCartComponent,
+    OrderSuccessfulComponent,
+    WishListComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
@@ -35,9 +62,21 @@ import { HttpClientModule } from '@angular/common/http';
     MatIconModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatToolbarModule,
+    MatGridListModule,
+    MatSelectModule,
+    MatChipsModule,
+    MatMenuModule,
+    MatBadgeModule,
+    MatRadioModule,
+    MatTableModule,
+    MatSnackBarModule,
+    NgxPaginationModule
   ],
-  providers: [],
+  providers: [
+    AuthGuardGuard
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

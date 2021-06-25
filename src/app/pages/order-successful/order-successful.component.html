@@ -1,0 +1,33 @@
+<app-tool-bar></app-tool-bar>
+<div fxLayout="column" fxLayoutAlign="center center" class="order-placed-container">
+    <div>
+        <img src="../../../assets/orderPlaced.png" />
+    </div>
+    <div>
+        <h3 fxLayout="column" fxLayoutAlign="center center">
+            <p>hurray!!! your order is confirmed</p>
+            <p>the order id is {{orderID}} save the order id for</p>
+            <p>further communication..</p>
+        </h3>
+    </div>
+    <div>
+        <table>
+            <tr>
+                <th>Email Us.</th>
+                <th>Contact Us.</th>
+                <th>Address</th>
+            </tr>
+            <tr>
+                <td>Bhu@g.co</td>
+                <td>+91 9632112369</td>
+                <td>#087, 14th main, 7th cross, sector 92</td>
+            </tr>
+        </table>
+    </div>
+    <div class="continue-shopping-button">
+        <button mat-raised-button color="primary" (click)="continueShopping()">CONTINUE SHOPPING</button>
+    </div>
+</div>
+<div>
+    <app-footer></app-footer>
+</div>
