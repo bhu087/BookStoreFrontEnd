@@ -19,8 +19,8 @@
                         <div fxLayout="row" fxLayoutAlign="center center" class="book-image" [style.background-color]="book.quantity > 0 ? '#F5F5F5': '#c4c4c4'">
                             <!--(mouseenter)="openMyMenu()"-->
                             <div>
-                                <div class="book-img">
-                                    <img mat-card-image src="../../../assets/Image 11.png">
+                                <div class="book-img" id="image-container">
+                                    <img mat-card-image src="../../../assets/Image 11.png" (mouseenter)="mouseEnter(book.description)" (mouseleave)="mouseLeave()">
                                 </div>
                                 <div class="out-of-stock" *ngIf="book.quantity == 0">OUT OF STOCK</div>
                             </div>
@@ -50,37 +50,12 @@
                         </div>
                     </mat-card>
                 </div>
-                <!-- <div class="book-description">
-                    <p>You enter your book description when you set up your title and provide your basic book
-                        information,
-                        called book metadata. You're able to set your book's metadata when you own the ISBN
-                        associated
-                        with your book, which is one of the many reasons it's important to own your own ISBN.
-                        A good book description is detailed, descriptive copy that is good for public display,
-                        used for your book marketing, book discovery, and for sales purposes. It helps potential
-                        buyers find and understand your book. It's your pitch. Your chance to get people interested.
-                        And it's your opportunity to get search engines interested as well. The better your book
-                        description,
-                        the better your chances for gaining visibility and remaining visible. </p>
-                </div> -->
             </mat-grid-tile>
-            <!-- <mat-menu #menu="matMenu" [overlapTrigger]="false" xPosition="after">
-                <div>
-                    <p>You enter your book description when you set up your title and provide your basic book
-                        information,
-                        called book metadata. You're able to set your book's metadata when you own the ISBN
-                        associated
-                        with your book, which is one of the many reasons it's important to own your own ISBN.
-                        A good book description is detailed, descriptive copy that is good for public display,
-                        used for your book marketing, book discovery, and for sales purposes. It helps potential
-                        buyers find and understand your book. It's your pitch. Your chance to get people interested.
-                        And it's your opportunity to get search engines interested as well. The better your book
-                        description,
-                        the better your chances for gaining visibility and remaining visible. </p>
-                </div>
-            </mat-menu> -->
         </mat-grid-list>
     </div>
+</div>
+<div class="book-description" id="description" *ngIf="description">
+    <p>{{bookDes}}</p>
 </div>
 <pagination-controls fxLayout="row" fxLayoutAlign="center end" previousLabel="" nextLabel="" class="my-pagination"
     (pageChange)="p = $event">

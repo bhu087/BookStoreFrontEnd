@@ -1,8 +1,10 @@
 import { AfterContentInit, AfterViewInit, Component, DoCheck, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatMenuTrigger } from '@angular/material/menu';
 import { Router } from '@angular/router';
 import { from } from 'rxjs';
 import { BooksServiceService } from 'src/app/services/booksService/books-service.service';
+import { DialogComponentComponent } from '../dialog-component/dialog-component.component';
 
 
 @Component({
@@ -20,6 +22,8 @@ export class DisplayBooksComponent implements OnInit, AfterViewInit {
   wishListData: any;
   disableWish = false;
   showMatMenu=false;
+  description = false;
+  bookDes: any;
   //searchTerm!: string;
   // bookBackGroundColor = "F5F5F5";
   @Output() childToParent = new EventEmitter<Event>();
@@ -27,12 +31,33 @@ export class DisplayBooksComponent implements OnInit, AfterViewInit {
   menu!: MatMenuTrigger;
   @Input()
   searchTerm!: string;  
-  p:any;
+  p:any; // pagination
 
   public pageSlice = this.data.slice(0,12);
-  constructor(private booksService: BooksServiceService, private router: Router) { 
+  constructor(private booksService: BooksServiceService, private router: Router, public dialog: MatDialog) { 
     this.onGetAllBooks();
   }
+
+  mouseEnter(des:any){
+    this.bookDes = des;
+    console.log(des);
+    this.description = true;
+  }
+  mouseLeave(){
+    this.description = false;
+    console.log("Exit");
+  }
+  openDialog(book:any) {
+    this.dialog.open(DialogComponentComponent,{
+      data:{
+        message: book.description
+      }
+    });
+  }
+  closeDialog(){
+    this.dialog.closeAll();
+  }
+
   ngAfterViewInit(): void {
     setTimeout(() => {
     this.onGetCart();

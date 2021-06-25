@@ -33,9 +33,9 @@ import { WishListComponent } from './pages/wish-list/wish-list.component';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { AuthGuardGuard } from './services/authGuard/auth-guard.guard';
-import { UserServiceService } from './services/userService/user-service.service';
-import { BooksServiceService } from './services/booksService/books-service.service';
 import { SearchServiceService } from './services/searchService/search-service.service';
+import {MatDialogModule} from '@angular/material/dialog';
+import { DialogComponentComponent } from './components/dialog-component/dialog-component.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +50,8 @@ import { SearchServiceService } from './services/searchService/search-service.se
     DisplayCartComponent,
     OrderSuccessfulComponent,
     WishListComponent,
-    SearchServiceService
+    SearchServiceService,
+    DialogComponentComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
@@ -74,7 +75,8 @@ import { SearchServiceService } from './services/searchService/search-service.se
     MatRadioModule,
     MatTableModule,
     MatSnackBarModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    MatDialogModule
   ],
   providers: [
     AuthGuardGuard

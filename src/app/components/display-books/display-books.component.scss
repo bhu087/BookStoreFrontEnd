@@ -1,4 +1,5 @@
 .all-books-container{
+    position: relative;
     padding-right: 150px;
     padding-left: 150px;
     line-height: 0px !important;
@@ -59,9 +60,7 @@
         }
     }
 }
-.book-description{
 
-}
 ::ng-deep.mat-menu-panel {
     /* These numbers are my requirement, put something which suits yours */
       transform: translate(0px, 32px); 
@@ -137,6 +136,28 @@ height: 100% !important;
 }
 ::ng-deep.mat-menu-panel {
     max-width: 375px !important;
+}
+
+
+#description{
+    display: block;
+    position: fixed;
+    background-color: white;
+    line-height: 100% !important;
+    left: 410px;
+    align-items: flex-start;
+    justify-content: center;
+    top: 157px;
+    min-width: 450px;
+    max-width: 35%;
+    min-height: 267px;
+    box-shadow: 5px 1px 8px 4px rgb(0 0 0 / 35%);
+    padding: 20px;
+    mat-card{
+    padding: 20px !important;
+    width: 100px;
+    height: 300px;
+    }
 }
   @media (max-width: 600px) {
     .all-books-container{
