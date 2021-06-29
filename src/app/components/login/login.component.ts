@@ -8,22 +8,20 @@ import { UserServiceService } from '../../services/userService/user-service.serv
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit, OnDestroy {
+export class LoginComponent implements OnInit {
   submitted = false;
   responseData: any;
   constructor(private formBuilder: FormBuilder, private service: UserServiceService,
     private router: Router) { }
-  ngOnDestroy(): void {
-    
-  }
+
   loginForm= this.formBuilder.group({
-    email : ['', [Validators.required, Validators.email]],//,Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
+    email : ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(20),Validators.pattern("^(?=.*?[A-Z])(?=.*?[0-9])(?=.*?[^\w\s]).{8,}$")]],
-});
+  });
+  get loggingForm() { return this.loginForm.controls; }
+
   ngOnInit(): void {
   }
-  
-  get loggingForm() { return this.loginForm.controls; }
 
   onLogin(value:any){
     this.submitted = true;

@@ -36,19 +36,22 @@ export class DashboardComponent implements OnInit {
     this.cartCount++;       //Click on add to cart increase cart value
   }
   onGetCart(){
-    this.bookService.getCart().subscribe((serve) => {
-      this.data = serve["data"];
-      if(this.data !== null){
-        for(let book of this.data){
-          this.cartCount += book.quantity;
-       }
-      }
-      else{
-        this.cartCount = 0;
-      }
-    },
-    (error)=>{
-      console.log(error);
-    });
+    if(localStorage.getItem("Bearer")){
+      this.bookService.getCart().subscribe((serve) => {
+        this.data = serve["data"];
+        if(this.data !== null){
+          for(let book of this.data){
+            this.cartCount += book.quantity;
+         }
+        }
+        else{
+          this.cartCount = 0;
+        }
+      },
+      (error)=>{
+        console.log(error);
+      });
+    }
+    
   }
 }

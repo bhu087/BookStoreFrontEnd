@@ -45,17 +45,20 @@ export class ToolBarComponent implements OnInit, AfterViewInit {
   }
 
   onGetCart(){
-    this.bookService.getCart().subscribe((serve) => {
-      this.data = serve["data"];
-      if(this.data !== null){
-        for(let book of this.data){
-          this.cartCount += book.quantity;
-       }
-      }
-    },
-    (error)=>{
-      console.log(error);
-    });
+    if(localStorage.getItem("Bearer")){
+      this.bookService.getCart().subscribe((serve) => {
+        this.data = serve["data"];
+        if(this.data !== null){
+          for(let book of this.data){
+            this.cartCount += book.quantity;
+         }
+        }
+      },
+      (error)=>{
+        console.log(error);
+      });
+    }
+    
   }
   onCart(){
     this.router.navigateByUrl("/cart");
@@ -70,13 +73,16 @@ export class ToolBarComponent implements OnInit, AfterViewInit {
     this.cartCount -= count;
   }
   onGetUser(){
-    this.userService.getUser().subscribe((serve) => {
-      this.user = serve["data"];
-      this.userName = this.user.name;
-    },
-    (error)=>{
-      console.log(error);
-    });
+    if(localStorage.getItem("Bearer")){
+      this.userService.getUser().subscribe((serve) => {
+        this.user = serve["data"];
+        this.userName = this.user.name;
+      },
+      (error)=>{
+        console.log(error);
+      });
+    }
+    
   }
   onMyWishlist(){
     this.router.navigateByUrl('/wishlist');

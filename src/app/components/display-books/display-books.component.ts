@@ -1,8 +1,7 @@
-import { AfterContentInit, AfterViewInit, Component, DoCheck, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatMenuTrigger } from '@angular/material/menu';
 import { Router } from '@angular/router';
-import { from } from 'rxjs';
 import { BooksServiceService } from 'src/app/services/booksService/books-service.service';
 import { DialogComponentComponent } from '../dialog-component/dialog-component.component';
 
@@ -24,8 +23,7 @@ export class DisplayBooksComponent implements OnInit, AfterViewInit {
   showMatMenu=false;
   description = false;
   bookDes: any;
-  //searchTerm!: string;
-  // bookBackGroundColor = "F5F5F5";
+  
   @Output() childToParent = new EventEmitter<Event>();
   @ViewChild(MatMenuTrigger)
   menu!: MatMenuTrigger;
@@ -40,12 +38,10 @@ export class DisplayBooksComponent implements OnInit, AfterViewInit {
 
   mouseEnter(des:any){
     this.bookDes = des;
-    console.log(des);
     this.description = true;
   }
   mouseLeave(){
     this.description = false;
-    console.log("Exit");
   }
   openDialog(book:any) {
     this.dialog.open(DialogComponentComponent,{
@@ -68,10 +64,10 @@ export class DisplayBooksComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     this.defaultColsize();
   }
-notifyDashboard(event:Event){
-  console.log(event);
-  this.childToParent.emit(event);
-}
+  notifyDashboard(event:Event){
+    console.log(event);
+    this.childToParent.emit(event);
+  }
   searchStringCall(){
     console.log(this.searchTerm);
   }
@@ -119,6 +115,7 @@ notifyDashboard(event:Event){
     });
   }
   onGetCart(){
+    if(localStorage.getItem("Bearer")){
       this.booksService.getCart().subscribe((result) => {
         this.cartData = result["data"];
         if(this.cartData !== null){
@@ -131,8 +128,10 @@ notifyDashboard(event:Event){
       (error)=>{
         console.log(error);
       });
+    }  
   }
   onGetWishList(){
+    if(localStorage.getItem("Bearer")){
       this.booksService.getWishList().subscribe((result) => {
         this.wishListData = result["data"];
         if(this.wishListData !== null){
@@ -145,6 +144,7 @@ notifyDashboard(event:Event){
       (error)=>{
         console.log(error);
       });
+    } 
   }
   checkBookCartStatus(){
     if(this.cartData !== null){
@@ -168,8 +168,8 @@ notifyDashboard(event:Event){
               book["wish"] = true;
             }
           }
-       }
-     }
+        }
+      }
     }
   }
 
@@ -187,7 +187,7 @@ notifyDashboard(event:Event){
       });
     }
     else{
-      this.router.navigateByUrl('/main/login');
+      this.router.navigateByUrl('/login-signup');
     }
   }
 
@@ -195,31 +195,30 @@ notifyDashboard(event:Event){
 
   sort(){
     console.log(this.data);
-       for(let book of this.sortedData){
-       book["clicked"] = false;
-       book["wish"] = false;
+    for(let book of this.sortedData){
+      book["clicked"] = false;
+      book["wish"] = false;
+    }
+    for(let book of this.data){
+      for(let sortBook of this.sortedData){
+        if(book.bookID === sortBook.bookID){
+          sortBook = book;
+        }
       }
-      for(let book of this.data){
-       for(let sortBook of this.sortedData){
-         if(book.bookID === sortBook.bookID){
-           sortBook = book;
-         }
-       }
-     }
-      this.data = this.sortedData;
-    console.log(this.data);
+    }
+    this.data = this.sortedData;
   }
  
   onSort(event:any){
-     this.booksService.getSortedBooks(event).subscribe((serve) =>
-      {
-        this.sortedData = serve['data'];
-        this.sort();
-        this.ngAfterViewInit();
-      },
-      (error) =>{
-        console.log(error);
-      });
+    this.booksService.getSortedBooks(event).subscribe((serve) =>
+    {
+      this.sortedData = serve['data'];
+      this.sort();
+      this.ngAfterViewInit();
+    },
+    (error) =>{
+      console.log(error);
+    });
   }
   addtoWishList(book:any){
     if(localStorage.getItem("Bearer")){
@@ -234,24 +233,24 @@ notifyDashboard(event:Event){
         console.log(error);
       });
     }
-     else{
-       this.router.navigateByUrl('/main/login');
-     }
-   }
-   openMyMenu(){
+    else{
+      this.router.navigateByUrl('/login-signup');
+    }
+  }
+  openMyMenu(){
     this.menu.openMenu();
     console.log("Mouse Enter");
-   }
-   closeMyMenu(){
-     this.menu.closeMenu();
+  }
+  closeMyMenu(){
+    this.menu.closeMenu();
     console.log("Leave");
-   }
+  }
 
-   dataRefresher:any;
-   refreshData(){
+  dataRefresher:any;
+  refreshData(){
     this.dataRefresher =
       setInterval(() => {
         this.onGetAllBooks();
-      }, 30000);  
+    }, 30000);  
   }
 }

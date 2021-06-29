@@ -51,9 +51,10 @@ export class DisplayCartComponent implements OnInit, AfterViewInit {
     );
     }
     else{
-      this.router.navigateByUrl("/main/login");
+      this.router.navigateByUrl("/login-signup");
     }
   }
+
   increase(cart:any){
     if(cart.quantity < 10){
       let index = this.data.indexOf(cart);
@@ -77,6 +78,7 @@ export class DisplayCartComponent implements OnInit, AfterViewInit {
     }
      
   }
+
   decrease(cart:any){
     if(cart.quantity > 1){
       let index = this.data.indexOf(cart);
@@ -94,10 +96,12 @@ export class DisplayCartComponent implements OnInit, AfterViewInit {
     }
     if(cart.quantity < 10){
     }
-     else{
-       this.decreaseButton = false;
-     }
+    else
+    {
+     this.decreaseButton = false;
+    }
   }
+
   remove(book:any){
     this.bookService.deleteBookFromCart(book.bookID).subscribe((serve)=>{
       this.toolBar.decreaseCart(book.quantity);
@@ -119,18 +123,19 @@ export class DisplayCartComponent implements OnInit, AfterViewInit {
   }
 
   addressForm = this.formBuilder.group({
-    city : ['', [Validators.required], [Validators.minLength(3)]],
-    name : ['', [Validators.required], [Validators.minLength(3)]],
-    mobile : ['', [Validators.required], [Validators.pattern("^[6-9]{1}[0-9]{9}$")]],
-    pincode : ['', [Validators.required], [Validators.pattern("^[1-9]{1}[0-9]{5}$")]],
-    locality : ['', [Validators.required], [Validators.minLength(5)]],
-    address : ['', [Validators.required], [Validators.minLength(10)]],
-    landMark : ['', [Validators.required], [Validators.minLength(5)]],
+    city : ['', [Validators.required, Validators.minLength(3)]],
+    name : ['', [Validators.required, Validators.minLength(3)]],
+    mobile : ['', [Validators.required, Validators.pattern("^[6-9]{1}[0-9]{9}$")]],
+    pincode : ['', [Validators.required, Validators.pattern("^[1-9]{1}[0-9]{5}$")]],
+    locality : ['', [Validators.required, Validators.minLength(5)]],
+    address : ['', [Validators.required, Validators.minLength(10)]],
+    landMark : ['', [Validators.required, Validators.minLength(5)]],
     options : ['', [Validators.required]]
-});
-get addressFormControls() { return this.addressForm.controls; }
-onAddAddress(newAddress:any){
-  this.submitted = true;
+  });
+  get addressFormControls() { return this.addressForm.controls; }
+
+  onAddAddress(newAddress:any){
+    this.submitted = true;
     if(this.addressForm.invalid){
       return;
     }
@@ -148,6 +153,7 @@ onAddAddress(newAddress:any){
       console.log(error);
     });
   }
+  
   onCheckout(){
     this.bookService.placeOrder(this.address).subscribe((serve)=>{
       this.sharedService.setOption(serve["data"]);

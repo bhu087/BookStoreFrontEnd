@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup,FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import {Router} from '@angular/router';
 import { UserServiceService } from 'src/app/services/userService/user-service.service';
 
@@ -19,7 +19,7 @@ export class SignupComponent implements OnInit {
     mobile:['', [Validators.required]],
     email : ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(20),Validators.pattern("^(?=.*?[A-Z])(?=.*?[0-9])(?=.*?[^\w\s]).{8,}$")]],
-});
+  });
   ngOnInit(): void {
   }
   get signingForm() {return this.signupForm.controls;}
