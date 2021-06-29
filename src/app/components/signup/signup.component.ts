@@ -40,7 +40,7 @@ export class SignupComponent implements OnInit {
       console.log(register);
       this.service.register(register).subscribe((success) =>{
         this.responseData = JSON.stringify(success);
-        this.router.navigateByUrl("/login");
+        this.router.navigateByUrl("/login-signup");
         console.log(success);
       },
       (error)=>{

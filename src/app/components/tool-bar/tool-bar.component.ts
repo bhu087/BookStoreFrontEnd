@@ -88,6 +88,6 @@ export class ToolBarComponent implements OnInit, AfterViewInit {
     // window.location.reload();
   }
   onLogin(){
-    this.router.navigateByUrl('/main/login');
+    this.router.navigateByUrl('/login-signup');
   }
 }

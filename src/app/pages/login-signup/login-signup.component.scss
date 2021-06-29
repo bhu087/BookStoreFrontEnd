@@ -44,6 +44,24 @@
                 .active{
                     color:black !important;
                 }
+                .signup-button-line{
+                    min-width: 1px;
+                    height: 6px;
+                    background-color: #A03037;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    padding-left: 0px;
+                }
+                .login-botton-line{
+                    min-width: 1px;
+                    height: 6px;
+                    background-color: #A03037;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    padding-left: 0px;
+                }
             }
         }
     }  

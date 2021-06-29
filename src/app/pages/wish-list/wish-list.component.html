@@ -5,7 +5,7 @@
         <div *ngFor="let cart of data" class="card-container">
             <div fxLayout="row" fxLayoutAlign="start center">
                 <div class="cart-image-container">
-                    <img src="../../../assets/Image 11.png">
+                    <img [src]="cart.image">
                 </div>
                 <div class="book-description">
                     <h2>{{cart.bookName}}</h2>

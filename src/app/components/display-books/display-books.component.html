@@ -20,7 +20,7 @@
                             <!--(mouseenter)="openMyMenu()"-->
                             <div>
                                 <div class="book-img" id="image-container">
-                                    <img mat-card-image src="../../../assets/Image 11.png" (mouseenter)="mouseEnter(book.description)" (mouseleave)="mouseLeave()">
+                                    <img mat-card-image [src]="book.image" (mouseenter)="mouseEnter(book.description)" (mouseleave)="mouseLeave()">
                                 </div>
                                 <div class="out-of-stock" *ngIf="book.quantity == 0">OUT OF STOCK</div>
                             </div>
@@ -55,7 +55,8 @@
     </div>
 </div>
 <div class="book-description" id="description" *ngIf="description">
-    <p>{{bookDes}}</p>
+    <h2>Book Details</h2>
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{bookDes}}</p>
 </div>
 <pagination-controls fxLayout="row" fxLayoutAlign="center end" previousLabel="" nextLabel="" class="my-pagination"
     (pageChange)="p = $event">

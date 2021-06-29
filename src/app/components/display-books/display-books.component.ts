@@ -62,7 +62,7 @@ export class DisplayBooksComponent implements OnInit, AfterViewInit {
     setTimeout(() => {
     this.onGetCart();
     this.onGetWishList();
-    }, 100)
+    }, 10)
   }
 
   ngOnInit(): void {
@@ -112,6 +112,7 @@ notifyDashboard(event:Event){
          book["wish"] = false;
          this.totalItems += 1;
       }
+      console.log(this.data);
     },
     (error)=>{
       console.log(error);

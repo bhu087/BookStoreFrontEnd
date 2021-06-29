@@ -36,6 +36,7 @@ import { AuthGuardGuard } from './services/authGuard/auth-guard.guard';
 import { SearchServiceService } from './services/searchService/search-service.service';
 import {MatDialogModule} from '@angular/material/dialog';
 import { DialogComponentComponent } from './components/dialog-component/dialog-component.component';
+//import {MatDividerModule} from '@angular/material/divider';
 
 @NgModule({
   declarations: [

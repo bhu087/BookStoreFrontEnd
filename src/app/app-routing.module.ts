@@ -10,7 +10,7 @@ import { OrderSuccessfulComponent } from './pages/order-successful/order-success
 import { WishListComponent } from './pages/wish-list/wish-list.component';
 import { AuthGuardGuard } from './services/authGuard/auth-guard.guard';
 
-const routes: Routes = 
+const routes: Routes =
 [
   {path: 'dashboard', component: DashboardComponent,
   children:[
@@ -19,16 +19,9 @@ const routes: Routes =
     }
   ]
 },
-  {path: 'main', component : LoginSignupComponent,
-  children:[
-    {
-      path: 'login', component: LoginComponent
-    },
-    {
-      path: 'signup', component: SignupComponent
-    }
-  ]
-},
+// {path: 'login', component: LoginComponent},
+// {path: 'signup', component: SignupComponent},
+{path: 'login-signup', component: LoginSignupComponent},
 {path: 'cart', component: DisplayCartComponent, canActivate: [AuthGuardGuard]},
 {path: 'orderPlaced', component: OrderSuccessfulComponent, canActivate: [AuthGuardGuard]},
 {path: 'wishlist', component: WishListComponent, canActivate: [AuthGuardGuard]}

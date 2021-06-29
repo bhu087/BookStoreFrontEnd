@@ -8,16 +8,22 @@
         </div>
         <div class="login-signup-form">
             <mat-card>
-                <div class="button-selection" fxLayout="row" fxLayoutAlign="space-between center">
-                    <div>
-                        <button mat-flat-button routerLink="login" (click)="changeColorOne()" class="login-button" routerLinkActive="active">LOGIN</button>
+                <div class="button-selection" fxLayout="row" fxLayoutAlign="space-between start">
+                    <div fxLayout="column" fxLayoutAlign="center center">
+                        <button mat-flat-button [ngStyle]="{'color': loginButton}" (click)="changeColorOne()" class="login-button">LOGIN</button>
+                        <!-- <mat-divider></mat-divider> -->
+                        <button *ngIf="loginBottomLine" mat-raised-button class="login-botton-line" disabled></button>
                     </div>
-                    <div>
-                        <button mat-flat-button routerLink="signup" (click)="changeColorTwo()" class="signup-button" routerLinkActive="active">SIGNUP</button>
+                    <div fxLayout="column" fxLayoutAlign="center center">
+                        <button mat-flat-button [ngStyle]="{'color': signupButton}" (click)="changeColorTwo()" class="signup-button">SIGNUP</button>
+                        <!-- <mat-divider></mat-divider> -->
+                        <button *ngIf="signupBottomLine" mat-raised-button class="signup-button-line" disabled></button>
                     </div>
                 </div>
                 <div>
-                    <router-outlet></router-outlet>
+                    <app-login *ngIf="login"></app-login>
+                    <app-signup *ngIf="signup"></app-signup>
+                    <!-- <router-outlet></router-outlet> -->
                 </div>
             </mat-card>
         </div>
